@@ -1,5 +1,5 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
+Inspired and modified from (https://github.com/Kamigami55/nextjs-tailwind-contentlayer-blog-starter)
 ## Getting Started
 
 First, run the development server:
