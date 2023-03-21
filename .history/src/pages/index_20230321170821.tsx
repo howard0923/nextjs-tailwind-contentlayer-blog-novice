@@ -36,11 +36,9 @@ const Home: NextPage<Props> = ({ posts }) => {
         <div className={styles.grid}>
           {posts.map((post) => (
             <a key={post.slug} href={post.path} className={styles.card}>
-              {/* 
-                  post.path 在contentlayer.config.js 中產生
-            */}
               <h2>{post.title}</h2>
               <p>{post.description}</p>
+              <pre>{JSON.stringify(post, null, 2)}</pre> {/* Add this */}
             </a>
           ))}
         </div>
