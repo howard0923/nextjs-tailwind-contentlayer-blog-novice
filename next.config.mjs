@@ -1,6 +1,9 @@
+import { withContentlayer } from 'next-contentlayer';
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // ...
+const nextConfig = withContentlayer({
+  reactStrictMode: true,
+  swcMinify: true,
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
@@ -11,6 +14,6 @@ const nextConfig = {
     // your project has type errors.
     ignoreBuildErrors: true,
   },
-};
+});
 
-module.exports = nextConfig;
+export default nextConfig;
