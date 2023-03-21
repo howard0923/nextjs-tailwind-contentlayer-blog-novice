@@ -1,0 +1,7 @@
+{
+  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"]
+  "rules": []
+  rules: {
+    'tailwindcss/classnames-order': 'off', // Respect prettier-plugin-tailwindcss order
+  },
+}
