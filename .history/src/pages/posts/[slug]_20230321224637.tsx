@@ -5,7 +5,6 @@ import Head from 'next/head';
 import { allPosts, Post } from '@/lib/contentLayerAdapter';
 import styles from '@/styles/Home.module.css';
 
-//getStaticPaths 事先定義哪些頁面需要產生 HTML 檔案。
 export const getStaticPaths: GetStaticPaths = () => {
   const paths = allPosts.map((post) => post.path); //paths属性是一个数组，包含所有文章的路径信息
   return {
@@ -13,11 +12,9 @@ export const getStaticPaths: GetStaticPaths = () => {
     fallback: false, //fallback属性是一个布尔值，表示是否在请求一个不存在的路由时返回404页面
   };
 };
-//
+
 export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
-  const post = allPosts.find((post) => post.slug === params?.slug);
-  //params contains the route parameters for pages using dynamic routes. For example, if the page name is [id].js , then params will look like { id: ... }
-  //The getStaticProps() function can also accept a context object. This object is provided by NextJS itself.
+  const post = allPosts.find((post) => post.slug === params?.slug); //params contains the route parameters for pages using dynamic routes. For example, if the page name is [id].js , then params will look like { id: ... }
   if (!post) {
     return {
       notFound: true,

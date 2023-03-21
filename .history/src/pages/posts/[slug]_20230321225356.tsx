@@ -15,9 +15,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 //
 export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
-  const post = allPosts.find((post) => post.slug === params?.slug);
-  //params contains the route parameters for pages using dynamic routes. For example, if the page name is [id].js , then params will look like { id: ... }
-  //The getStaticProps() function can also accept a context object. This object is provided by NextJS itself.
+  const post = allPosts.find((post) => post.slug === params?.slug); //params contains the route parameters for pages using dynamic routes. For example, if the page name is [id].js , then params will look like { id: ... }
   if (!post) {
     return {
       notFound: true,
