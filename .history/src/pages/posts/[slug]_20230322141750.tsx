@@ -1,9 +1,9 @@
 import { format, parseISO } from 'date-fns';
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
-import { useMDXComponent } from 'next-contentlayer/hooks';
+
 import { allPosts, Post } from '@/lib/contentLayerAdapter';
+import styles from '@/styles/Home.module.css';
 
 //getStaticPaths 事先定義哪些頁面需要產生 HTML 檔案。
 export const getStaticPaths: GetStaticPaths = () => {
@@ -35,7 +35,6 @@ type Props = {
 };
 
 const PostPage: NextPage<Props> = ({ post }) => {
-  const MDXContent = useMDXComponent(post.body.code); // code 是 post的內容
   return (
     <div className={styles.container}>
       <Head>
@@ -50,7 +49,7 @@ const PostPage: NextPage<Props> = ({ post }) => {
         <time dateTime={post.date}>
           {format(parseISO(post.date), 'LLLL d, yyyy')} ..
         </time>
-        <MDXContent />
+        <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
       </main>
     </div>
   );

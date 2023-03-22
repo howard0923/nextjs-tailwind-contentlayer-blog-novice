@@ -35,7 +35,7 @@ type Props = {
 };
 
 const PostPage: NextPage<Props> = ({ post }) => {
-  const MDXContent = useMDXComponent(post.body.code); // code 是 post的內容
+  const MDXContent = useMDXComponent(post.body.code);
   return (
     <div className={styles.container}>
       <Head>
