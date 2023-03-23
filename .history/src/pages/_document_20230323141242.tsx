@@ -4,7 +4,7 @@ function MyDocument() {
   return (
     <Html>
       <Head />
-      <body className="overflow-x-hidden bg-white text-black antialiased transition-colors dark:bg-gray-900 dark:text-white">
+      <body className="overflow-x-hidden bg-white text-black antialiased transition-colors dark:bg-pink-900 dark:text-white">
         <Main />
         <NextScript />
       </body>
