@@ -11,7 +11,7 @@ export function getStaticProps() {
 }
 
 type Props = {
-  posts: Post[]; //確保posts屬性包含的是Post數組。
+  posts: Post[];
 };
 
 const Home: NextPage<Props> = ({ posts }) => {

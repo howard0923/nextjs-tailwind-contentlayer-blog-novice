@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'; // NextPage 是 Next.js 框架中定義的一個泛型型別，表示一個 React 組件，通常用來表示一個網頁或應用程序的頁面。
-import Head from 'next/head'; //於設置網頁的標題、元描述等頁面相關的信息。
+import Head from 'next/head';
 import Image from 'next/image';
 
 import { allPostsNewToOld, Post } from '@/lib/contentLayerAdapter';
@@ -7,11 +7,11 @@ import styles from '@/styles/Home.module.css';
 
 export function getStaticProps() {
   const posts = allPostsNewToOld;
-  return { props: { posts } }; //通過props屬性傳遞這些文章到Home組件中。
+  return { props: { posts } };
 }
 
 type Props = {
-  posts: Post[]; //確保posts屬性包含的是Post數組。
+  posts: Post[];
 };
 
 const Home: NextPage<Props> = ({ posts }) => {

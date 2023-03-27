@@ -7,11 +7,11 @@ import styles from '@/styles/Home.module.css';
 
 export function getStaticProps() {
   const posts = allPostsNewToOld;
-  return { props: { posts } }; //通過props屬性傳遞這些文章到Home組件中。
+  return { props: { posts } };
 }
 
 type Props = {
-  posts: Post[]; //確保posts屬性包含的是Post數組。
+  posts: Post[];
 };
 
 const Home: NextPage<Props> = ({ posts }) => {

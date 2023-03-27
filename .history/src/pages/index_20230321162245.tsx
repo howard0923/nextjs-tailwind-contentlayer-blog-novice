@@ -35,6 +35,7 @@ const Home: NextPage<Props> = ({ posts }) => {
 
         <div className={styles.grid}>
           {posts.map((post) => (
+            console.log(post)
             <a key={post.slug} href={post.path} className={styles.card}>
               <h2>{post.title}</h2>
               <p>{post.description}</p>

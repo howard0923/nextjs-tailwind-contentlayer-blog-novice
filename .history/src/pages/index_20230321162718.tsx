@@ -38,6 +38,7 @@ const Home: NextPage<Props> = ({ posts }) => {
             <a key={post.slug} href={post.path} className={styles.card}>
               <h2>{post.title}</h2>
               <p>{post.description}</p>
+              <pre>{JSON.stringify(post, null, 2)}</pre> {/* Add this */}
             </a>
           ))}
         </div>
