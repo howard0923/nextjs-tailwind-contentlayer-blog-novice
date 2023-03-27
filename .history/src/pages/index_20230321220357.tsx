@@ -7,6 +7,7 @@ import styles from '@/styles/Home.module.css';
 
 export function getStaticProps() {
   const posts = allPostsNewToOld;
+  console.log(post);
   return { props: { posts } }; //通過props屬性傳遞這些文章到Home組件中。
 }
 

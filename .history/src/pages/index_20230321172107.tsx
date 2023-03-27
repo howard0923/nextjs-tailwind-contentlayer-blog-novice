@@ -40,7 +40,7 @@ const Home: NextPage<Props> = ({ posts }) => {
                   post.path 在contentlayer.config.js 中產生
             */}
               <h2>{post.title}</h2>
-              <p>{post.description}</p>
+              <p>{post.description}</p>ㄋ
             </a>
           ))}
         </div>
