@@ -17,7 +17,6 @@ export type Post = {
   description: string
   slug: string
   date: IsoDateTimeString
-  socialImage?: string | undefined
   /** MDX file body */
   body: MDX
   path: string
