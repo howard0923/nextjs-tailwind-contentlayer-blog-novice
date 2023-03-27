@@ -1,7 +1,6 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-
 import mdxComponents from '@/lib/mdxComponents';
 import PostLayout, {
   PostForPostLayout,
@@ -90,7 +89,7 @@ const PostPage: NextPage<Props> = ({ post, prevPost, nextPost }) => {
       </Head>
 
       <PostLayout post={post} prevPost={prevPost} nextPost={nextPost}>
-        <MDXContent components={mdxComponents} />
+        <MDXContent />
       </PostLayout>
     </>
   );
