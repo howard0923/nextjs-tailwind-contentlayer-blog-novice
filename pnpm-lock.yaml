@@ -20,6 +20,7 @@ specifiers:
   eslint-plugin-tailwindcss: ^3.10.1
   next: 13.2.4
   next-contentlayer: ^0.3.0
+  next-seo: ^5.15.0
   next-themes: ^0.2.1
   postcss: ^8.4.21
   prettier: ^2.8.5
@@ -43,6 +44,7 @@ dependencies:
   eslint-config-next: 13.2.4_j4766f7ecgqbon3u7zlxn5zszu
   next: 13.2.4_5y7qh6ykubtj2qr2evk3di7hpa
   next-contentlayer: 0.3.0_rxyzbctjuznd6cmvogf5xnmehq
+  next-seo: 5.15.0_ld2jel3hspngo3u5lti2kgl2sq
   next-themes: 0.2.1_ld2jel3hspngo3u5lti2kgl2sq
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -5179,6 +5181,18 @@ packages:
       - esbuild
       - markdown-wasm
       - supports-color
+    dev: false
+
+  /next-seo/5.15.0_ld2jel3hspngo3u5lti2kgl2sq:
+    resolution: {integrity: sha512-LGbcY91yDKGMb7YI+28n3g+RuChUkt6pXNpa8FkfKkEmNiJkeRDEXTnnjVtwT9FmMhG6NH8qwHTelGrlYm9rgg==}
+    peerDependencies:
+      next: ^8.1.1-canary.54 || >=9.0.0
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+    dependencies:
+      next: 13.2.4_5y7qh6ykubtj2qr2evk3di7hpa
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /next-themes/0.2.1_ld2jel3hspngo3u5lti2kgl2sq:
