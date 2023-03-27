@@ -1,22 +1,17 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { ArticleJsonLd, NextSeo } from 'next-seo';
 
+import mdxComponents from '@/lib/mdxComponents';
 import PostLayout, {
   PostForPostLayout,
   RelatedPostForPostLayout,
 } from '@/components/PostLayout';
-import { siteConfigs } from '@/configs/siteConfigs';
 import { allPosts, allPostsNewToOld } from '@/lib/contentLayerAdapter';
-import { getPostOGImage } from '@/lib/getPostOGImage';
-import mdxComponents from '@/lib/mdxComponents';
 
 type PostForPostPage = PostForPostLayout & {
   title: string;
   description: string;
-  date: string;
-  path: string;
-  socialImage: string | null;
   body: {
     code: string;
   };
@@ -58,8 +53,6 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
     title: postFull.title,
     date: postFull.date,
     description: postFull.description,
-    path: postFull.path,
-    socialImage: postFull.socialImage || null,
     body: {
       code: postFull.body.code,
     },
@@ -83,48 +76,18 @@ const PostPage: NextPage<Props> = ({ post, prevPost, nextPost }) => {
   const {
     description,
     title,
-    date,
-    path,
-    socialImage,
     body: { code },
   } = post;
-  const url = siteConfigs.fqdn + path;
-  const ogImage = getPostOGImage(socialImage);
 
   const MDXContent = useMDXComponent(code);
 
   return (
     <>
-      <NextSeo
-        title={title}
-        description={description}
-        canonical={url}
-        openGraph={{
-          title: title,
-          description: description,
-          url: url,
-          images: [
-            {
-              url: ogImage,
-            },
-          ],
-          type: 'article',
-          article: {
-            publishedTime: date,
-            modifiedTime: date,
-          },
-        }}
-      />
-
-      <ArticleJsonLd
-        url={url}
-        title={title}
-        images={[ogImage]}
-        datePublished={date}
-        dateModified={date}
-        authorName={siteConfigs.author}
-        description={description}
-      />
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
       <PostLayout post={post} prevPost={prevPost} nextPost={nextPost}>
         <MDXContent components={mdxComponents} />

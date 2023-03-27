@@ -29,7 +29,7 @@ type Props = {
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
-  const paths = allPosts.map((post) => post.path);
+  const paths = allPosts.map((post:PostForPostPage) => post.path);
   return {
     paths,
     fallback: false,

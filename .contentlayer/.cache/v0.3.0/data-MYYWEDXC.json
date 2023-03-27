@@ -1,0 +1,54 @@
+{
+  "cacheItemsMap": {
+    "post/20220830-sample-post.md": {
+      "document": {
+        "title": "Sample post",
+        "description": "My first post",
+        "slug": "sample-post",
+        "date": "2022-08-30T00:00:00.000Z",
+        "body": {
+          "raw": "\r\n## This is my first sample post\r\n\r\nCongratulations! You have created your first post.\r\n",
+          "html": "<h2>This is my first sample post</h2>\n<p>Congratulations! You have created your first post.</p>"
+        },
+        "_id": "post/20220830-sample-post.md",
+        "_raw": {
+          "sourceFilePath": "post/20220830-sample-post.md",
+          "sourceFileName": "20220830-sample-post.md",
+          "sourceFileDir": "post",
+          "contentType": "markdown",
+          "flattenedPath": "post/20220830-sample-post"
+        },
+        "type": "Post",
+        "path": "/posts/sample-post"
+      },
+      "documentHash": "1679366352641",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    },
+    "post/20220831-markdown-demo.md": {
+      "document": {
+        "title": "Markdown demo",
+        "description": "This is a demo of Markdown",
+        "slug": "markdown-demo",
+        "date": "2022-08-31T00:00:00.000Z",
+        "body": {
+          "raw": "\r\n## H2 title\r\n\r\n### H3 title\r\n\r\nSome content with [link](https://www.google.com)\r\n",
+          "html": "<h2>H2 title</h2>\n<h3>H3 title</h3>\n<p>Some content with <a href=\"https://www.google.com\">link</a></p>"
+        },
+        "_id": "post/20220831-markdown-demo.md",
+        "_raw": {
+          "sourceFilePath": "post/20220831-markdown-demo.md",
+          "sourceFileName": "20220831-markdown-demo.md",
+          "sourceFileDir": "post",
+          "contentType": "markdown",
+          "flattenedPath": "post/20220831-markdown-demo"
+        },
+        "type": "Post",
+        "path": "/posts/markdown-demo"
+      },
+      "documentHash": "1679366035976",
+      "hasWarnings": false,
+      "documentTypeName": "Post"
+    }
+  }
+}
