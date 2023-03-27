@@ -10,7 +10,6 @@
   "rules": {
     "tailwindcss/classnames-order": "off" // Respect prettier-plugin-tailwindcss order
   },
-  //用了 prettier-plugin-tailwindcss 插件，該插件可以自動對 Tailwind CSS 的類名進行排序和格式化，因此我們不需要再使用 tailwindcss/classnames-order 規則來進行檢查了
 
   "settings": { "import/ignore": ["contentLayerAdapter.js"] },
 
