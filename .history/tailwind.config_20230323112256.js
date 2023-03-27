@@ -1,13 +1,9 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-const colors = require('tailwindcss/colors');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,css,scss}'],
   darkMode: 'class',
   theme: {
-    extend: {
-      lineHeight: {
+     lineHeight: {
         11: '2.75rem',
         12: '3rem',
         13: '3.25rem',
