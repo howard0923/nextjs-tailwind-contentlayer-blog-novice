@@ -39,6 +39,7 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
       notFound: true,
     };
   }
+  console.log(allPostsNewToOld[0]);
   const prevFull = allPostsNewToOld[postIndex + 1] || null;
   const prevPost: RelatedPostForPostLayout = prevFull
     ? { title: prevFull.title, path: prevFull.path }

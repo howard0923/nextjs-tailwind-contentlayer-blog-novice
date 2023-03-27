@@ -1,0 +1,28 @@
+.postBody {
+  :global(.rehype-code-title) {
+    @apply -mb-3 rounded-tl rounded-tr bg-slate-600 px-4 pt-1 pb-2 font-mono text-sm text-gray-200;
+  }
+  //The :global keyword is used to indicate that this selector should not be scoped to the current module,
+
+  div:global(.rehype-code-title) + pre {
+    @apply rounded-tl-none rounded-tr-none;
+  }
+  // is a selector that selects any pre element that follows a div element with the class rehype-code-title
+
+  img {
+    @apply ml-auto mr-auto;
+  }
+
+  blockquote {
+    @apply not-italic;
+
+    p:first-of-type::before {
+      content: none;
+    }
+    p:last-of-type::after {
+      //::before and ::after pseudo-elements are used to insert content before or after the selected element.
+      content: none;
+      // remove the quotation marks that would normally appear at the beginning and end of the blockquote.
+    }
+  }
+}
