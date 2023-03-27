@@ -34,9 +34,7 @@ const Home: NextPage<Props> = ({ posts }) => {
       <div className="prose my-12 space-y-2 transition-colors dark:prose-dark md:prose-lg md:space-y-5">
         <h1 className="text-center sm:text-left">Hey，I am Howard </h1>
         <p>立志成為全端工程師</p>
-        <p>
-          這裡會分享一些<strong>網站開發、軟體工程</strong>的觀念筆記，實作過程
-        </p>
+        <p>這裡會分享一些網站開發、軟體工程的觀念筆記，實作過程</p>
       </div>
 
       <div className="my-4 divide-y divide-gray-200 transition-colors dark:divide-gray-700">
