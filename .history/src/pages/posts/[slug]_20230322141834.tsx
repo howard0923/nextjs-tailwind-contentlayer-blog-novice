@@ -35,7 +35,6 @@ type Props = {
 };
 
 const PostPage: NextPage<Props> = ({ post }) => {
-  const MDXContent = useMDXComponent(post.body.code); // code 是 post的內容
   return (
     <div className={styles.container}>
       <Head>
@@ -50,7 +49,7 @@ const PostPage: NextPage<Props> = ({ post }) => {
         <time dateTime={post.date}>
           {format(parseISO(post.date), 'LLLL d, yyyy')} ..
         </time>
-        <MDXContent />
+        <div dangerouslySetInnerHTML={{ __html: post.body.html }} />
       </main>
     </div>
   );
