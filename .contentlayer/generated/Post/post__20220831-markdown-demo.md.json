@@ -1,0 +1,20 @@
+{
+  "title": "Markdown demo",
+  "description": "This is a demo of Markdown",
+  "slug": "markdown-demo",
+  "date": "2022-08-31T00:00:00.000Z",
+  "body": {
+    "raw": "\r\n## H2 title\r\n\r\n### H3 title\r\n\r\nSome content with [link](https://www.google.com)\r\n",
+    "html": "<h2>H2 title</h2>\n<h3>H3 title</h3>\n<p>Some content with <a href=\"https://www.google.com\">link</a></p>"
+  },
+  "_id": "post/20220831-markdown-demo.md",
+  "_raw": {
+    "sourceFilePath": "post/20220831-markdown-demo.md",
+    "sourceFileName": "20220831-markdown-demo.md",
+    "sourceFileDir": "post",
+    "contentType": "markdown",
+    "flattenedPath": "post/20220831-markdown-demo"
+  },
+  "type": "Post",
+  "path": "/posts/markdown-demo"
+}
