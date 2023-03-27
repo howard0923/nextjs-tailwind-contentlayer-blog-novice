@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".contentlayer/generated"
+  ],
+  "exclude": ["node_modules"]
+}
+/*
+"compilerOptions": 定義了 TypeScript 編譯器的選項。
+"target": 指定了 TypeScript 編譯器要生成的 JavaScript 代碼版本。這裡設為 "es5"，表示生成的代碼支援 ES5 規範。
+"lib": 指定了 TypeScript 編譯器要引入哪些內置的 JavaScript 庫，例如 "dom" 表示瀏覽器的 DOM API，"dom.iterable" 表示支援可迭代的 DOM API，"esnext" 表示引入最新的 ES 規範。
+"allowJs": 允許 TypeScript 編譯器編譯 JavaScript 文件。
+"skipLibCheck": 不對引入的 JavaScript 庫進行型別檢查。
+"strict": 啟用所有嚴格型別檢查選項。
+"forceConsistentCasingInFileNames": 確保文件名的大小寫一致性。
+"noEmit": 不生成任何 JavaScript 代碼。
+"esModuleInterop": 啟用 ES 模組系統的互操作性。
+"module": 指定了生成的 JavaScript 代碼使用的模組系統，這裡設為 "esnext"，表示使用 ES6 的模組系統。
+"moduleResolution": 指定了模組解析策略，這裡設為 "node"，表示使用 Node.js 的模組解析策略。
+"resolveJsonModule": 允許 TypeScript 編譯器引入 JSON 文件。
+"isolatedModules": 確保每個文件都是獨立的模組，避免全局作用域的命名衝突。
+"jsx": 指定了 JSX 的處理方式，這裡設為 "preserve"，表示不進行轉換，保留原樣。
+"incremental": 啟用增量編譯，加速編譯速度。
+"paths": 指定了模組解析的路徑映射，例如 "@/" 表示把 "@/" 替換為 "./src/"。
+"include": 指定了要包含的文件，這裡設為所有的 TypeScript 和 TypeScript + JSX 文件，以及 ".contentlayer/generated" 目錄下的所有文件。
+"exclude": 指定了要排除的文件，這裡設為 "node_modules" 目錄下的所有文件。
+*/
