@@ -6,7 +6,12 @@
   div:global(.rehype-code-title) + pre {
     @apply rounded-tl-none rounded-tr-none;
   }
+
+  img {
+    @apply ml-auto mr-auto;
+  }
   // is a selector that selects any pre element that follows a div element with the class rehype-code-title
+
   img {
     @apply ml-auto mr-auto;
   }

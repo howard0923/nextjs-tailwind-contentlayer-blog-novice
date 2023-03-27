@@ -34,7 +34,5 @@ export const Post = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'content',
   documentTypes: [Post],
-  mdx: {
-    rehypePlugins: [rehypeCodeTitles, [rehypePrism, { ignoreMissing: true }]],
-  },
+  mdx: { rehypePlugins: [[rehypePrism, { ignoreMissing: true }]] },
 });

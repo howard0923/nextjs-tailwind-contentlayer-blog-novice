@@ -35,6 +35,7 @@ export default makeSource({
   contentDirPath: 'content',
   documentTypes: [Post],
   mdx: {
+    // 新增到 rehypePlugins 列表裡
     rehypePlugins: [rehypeCodeTitles, [rehypePrism, { ignoreMissing: true }]],
   },
 });
