@@ -31,6 +31,7 @@ specifiers:
   react-dom: 18.2.0
   rehype-code-titles: ^1.2.0
   rehype-prism-plus: ^1.5.1
+  rehype-slug: ^5.1.0
   sass: ^1.60.0
   tailwindcss: ^3.2.7
   typescript: 5.0.2
@@ -53,6 +54,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   rehype-code-titles: 1.2.0
   rehype-prism-plus: 1.5.1
+  rehype-slug: 5.1.0
 
 devDependencies:
   '@svgr/webpack': 6.5.1
@@ -3992,6 +3994,10 @@ packages:
     resolution: {integrity: sha512-0Gdjo/9+FzsYhXCEFueo2aY1z1tpXrxWZzP7k8ul9qt1U5o8rYJwTJYmaeHdrVosYIVYkOy2iwCJ9FdpocJhPQ==}
     dev: false
 
+  /github-slugger/2.0.0:
+    resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
+    dev: false
+
   /glob-parent/5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -4157,6 +4163,16 @@ packages:
       vfile: 5.3.7
       vfile-location: 4.1.0
       web-namespaces: 2.0.1
+    dev: false
+
+  /hast-util-has-property/2.0.1:
+    resolution: {integrity: sha512-X2+RwZIMTMKpXUzlotatPzWj8bspCymtXH3cfG3iQKV+wPF53Vgaqxi/eLqGck0wKq1kS9nvoB1wchbCPEL8sg==}
+    dev: false
+
+  /hast-util-heading-rank/2.1.1:
+    resolution: {integrity: sha512-iAuRp+ESgJoRFJbSyaqsfvJDY6zzmFoEnL1gtz1+U8gKtGGj1p0CVlysuUAUjq95qlZESHINLThwJzNGmgGZxA==}
+    dependencies:
+      '@types/hast': 2.3.4
     dev: false
 
   /hast-util-parse-selector/3.1.1:
@@ -5836,6 +5852,18 @@ packages:
       refractor: 4.8.1
       rehype-parse: 8.0.4
       unist-util-filter: 4.0.1
+      unist-util-visit: 4.1.2
+    dev: false
+
+  /rehype-slug/5.1.0:
+    resolution: {integrity: sha512-Gf91dJoXneiorNEnn+Phx97CO7oRMrpi+6r155tTxzGuLtm+QrI4cTwCa9e1rtePdL4i9tSO58PeSS6HWfgsiw==}
+    dependencies:
+      '@types/hast': 2.3.4
+      github-slugger: 2.0.0
+      hast-util-has-property: 2.0.1
+      hast-util-heading-rank: 2.1.1
+      hast-util-to-string: 2.0.0
+      unified: 10.1.2
       unist-util-visit: 4.1.2
     dev: false
 

@@ -1,8 +1,6 @@
 import rehypeCodeTitles from 'rehype-code-titles';
 import { defineDocumentType, makeSource } from './src/lib/contentLayerAdapter';
 import rehypePrism from 'rehype-prism-plus';
-import rehypeSlug from 'rehype-slug';
-
 export const Post = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: `content/posts/**/*.mdx`,
