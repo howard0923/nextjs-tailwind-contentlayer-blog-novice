@@ -21,8 +21,6 @@ export const getStaticProps: GetStaticProps<Props> = () => {
     description: post.description,
     path: post.path,
   })) as PostForIndexPage[];
-  generateRSS();
-
   return { props: { posts } };
 };
 

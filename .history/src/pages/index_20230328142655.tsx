@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps<Props> = () => {
     path: post.path,
   })) as PostForIndexPage[];
   generateRSS();
-
+  
   return { props: { posts } };
 };
 

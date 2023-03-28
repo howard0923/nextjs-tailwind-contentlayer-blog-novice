@@ -15,6 +15,6 @@ export const siteConfigs = {
   bannerUrl: fqdn + bannerPath,
   twitterID: '@howard03021',
   datePublished: '2022-09-01',
-  credit: 'Howard chen',
-  email: 'chenhoward7@gmail.com',
+  credit: 'Stark Industries',
+  email: 'stark@example.com',
 };

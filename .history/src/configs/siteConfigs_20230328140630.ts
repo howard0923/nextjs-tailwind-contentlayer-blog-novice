@@ -16,5 +16,5 @@ export const siteConfigs = {
   twitterID: '@howard03021',
   datePublished: '2022-09-01',
   credit: 'Howard chen',
-  email: 'chenhoward7@gmail.com',
+  email: 'stark@example.com',
 };
