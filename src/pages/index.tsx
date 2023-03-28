@@ -45,7 +45,6 @@ const Home: NextPage<Props> = ({ posts }) => {
           這裡會分享一些<strong>網站開發、軟體工程</strong>的觀念筆記，實作過程
         </p>
       </div>
-      ;
       <div className="my-4 divide-y divide-gray-200 transition-colors dark:divide-gray-700">
         <div className="prose prose-lg my-8 dark:prose-dark">
           <h2>最新文章</h2>
