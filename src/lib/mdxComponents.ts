@@ -8,6 +8,7 @@ import {
 } from '@/components/CustomHeading';
 import CustomPre from '@/components/CustomPre';
 import CustomLink from '@/components/CustomLink';
+import CustomImage from '@/components/CustomImage';
 // Custom components/renderers to pass to MDX.
 const mdxComponents = {
   h1: CustomH1,
@@ -18,6 +19,7 @@ const mdxComponents = {
   h6: CustomH6,
   pre: CustomPre,
   a: CustomLink,
+  img: CustomImage,
 };
 
 export default mdxComponents;
