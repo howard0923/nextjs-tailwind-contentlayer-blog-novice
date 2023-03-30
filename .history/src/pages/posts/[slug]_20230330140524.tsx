@@ -62,8 +62,6 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
     socialImage: postFull.socialImage || null,
     body: {
       code: postFull.body.code,
-      // 加入下面這行 raw
-      raw: postFull.body.raw
     },
   };
 

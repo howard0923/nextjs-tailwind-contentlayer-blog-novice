@@ -60,17 +60,9 @@ export default function PostLayout({
         <div
           className="pb-8 transition-colors lg:grid lg:grid-cols-4 lg:gap-x-6"
           style={{ gridTemplateRows: 'auto 1fr' }}
-        >
-          <div className="divide-y divide-gray-200 pt-10 pb-8 transition-colors dark:divide-gray-700 lg:col-span-3">
-            <PostBody>{children}</PostBody>
-          </div>
-
-          {/* DESKTOP TABLE OF CONTENTS */}
-          <aside>
-            <div className="hidden lg:sticky lg:top-24 lg:col-span-1 lg:block">
-              <TableOfContents source={raw} />
-            </div>
-          </aside>
+        ></div>
+        <div className="divide-y divide-gray-200 pt-10 pb-8 transition-colors dark:divide-gray-700">
+          <PostBody>{children}</PostBody>
         </div>
 
         <div

@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
     body: {
       code: postFull.body.code,
       // 加入下面這行 raw
-      raw: postFull.body.raw
+      raw: postFull.body.raw,
     },
   };
 
