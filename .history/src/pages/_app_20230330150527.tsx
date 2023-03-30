@@ -2,7 +2,6 @@ import '@/styles/globals.css';
 import '@/styles/prism-dracula.css';
 import '@/styles/prism-plus.css';
 import 'nprogress/nprogress.css';
-import '@/styles/nprogress-custom.scss';
 
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
@@ -19,14 +18,7 @@ import { useEffect } from 'react';
 NProgress.configure({ showSpinner: false });
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // 新增下面這塊 useEffect，在 Next.js 換頁時開始 Nprogress 讀條，並在換頁完成時停止
-  const router = useRouter();
-  useEffect(() => {
-    router.events.on('routeChangeStart', () => NProgress.start());
-    router.events.on('routeChangeComplete', () => NProgress.done());
-    router.events.on('routeChangeError', () => NProgress.done());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  
   return (
     <ThemeProvider attribute="class">
       <DefaultSeo

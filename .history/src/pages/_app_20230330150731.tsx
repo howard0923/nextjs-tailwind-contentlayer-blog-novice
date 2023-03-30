@@ -2,8 +2,7 @@ import '@/styles/globals.css';
 import '@/styles/prism-dracula.css';
 import '@/styles/prism-plus.css';
 import 'nprogress/nprogress.css';
-import '@/styles/nprogress-custom.scss';
-
+import "@/styles/nprogress-custom.scss";
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import { ThemeProvider } from 'next-themes';

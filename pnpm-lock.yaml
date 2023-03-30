@@ -4,6 +4,7 @@ specifiers:
   '@svgr/webpack': ^6.5.1
   '@tailwindcss/typography': ^0.5.9
   '@types/node': 18.15.3
+  '@types/nprogress': ^0.2.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
   '@typescript-eslint/eslint-plugin': ^5.55.0
@@ -25,6 +26,7 @@ specifiers:
   next-seo: ^5.15.0
   next-sitemap: ^4.0.6
   next-themes: ^0.2.1
+  nprogress: ^0.2.0
   plaiceholder: ^2.5.0
   postcss: ^8.4.21
   prettier: ^2.8.5
@@ -55,6 +57,7 @@ dependencies:
   next-contentlayer: 0.3.0_rxyzbctjuznd6cmvogf5xnmehq
   next-seo: 5.15.0_ld2jel3hspngo3u5lti2kgl2sq
   next-themes: 0.2.1_ld2jel3hspngo3u5lti2kgl2sq
+  nprogress: 0.2.0
   plaiceholder: 2.5.0_sharp@0.32.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -67,6 +70,7 @@ dependencies:
 devDependencies:
   '@svgr/webpack': 6.5.1
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
+  '@types/nprogress': 0.2.0
   '@typescript-eslint/eslint-plugin': 5.55.0_qsnvknysi52qtaxqdyqyohkcku
   '@typescript-eslint/parser': 5.55.0_j4766f7ecgqbon3u7zlxn5zszu
   autoprefixer: 10.4.14_postcss@8.4.21
@@ -2481,6 +2485,10 @@ packages:
   /@types/node/18.15.3:
     resolution: {integrity: sha512-p6ua9zBxz5otCmbpb5D3U4B5Nanw6Pk3PPyX05xnxbB/fRv71N7CPmORg7uAD5P70T0xmx1pzAx/FUfa5X+3cw==}
     dev: false
+
+  /@types/nprogress/0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
+    dev: true
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
@@ -5482,6 +5490,10 @@ packages:
     resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /nprogress/0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
+    dev: false
 
   /nth-check/2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
