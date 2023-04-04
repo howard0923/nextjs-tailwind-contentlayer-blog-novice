@@ -18,6 +18,12 @@ type Props = {
   posts: PostForIndexPage[];
   commandPalettePosts: PostForCommandPalette[];
 };
+React.useEffect(() => {
+  query.setSearch('');
+  //ownRef.current!.focus();
+  query.getInput().focus();
+  return () => query.setSearch('');
+}, [currentRootActionId, query]);
 
 export const getStaticProps: GetStaticProps<Props> = () => {
   const commandPalettePosts = getCommandPalettePosts();
@@ -34,7 +40,6 @@ export const getStaticProps: GetStaticProps<Props> = () => {
 };
 
 const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
-  useCommandPalettePostActions(commandPalettePosts);
   return (
     <>
       <ArticleJsonLd

@@ -95,6 +95,7 @@ const PostPage: NextPage<Props> = ({
   nextPost,
   commandPalettePosts,
 }) => {
+  useCommandPalettePostActions(commandPalettePosts);
   const {
     description,
     title,
@@ -103,7 +104,6 @@ const PostPage: NextPage<Props> = ({
     socialImage,
     body: { code },
   } = post;
-  useCommandPalettePostActions(commandPalettePosts);
   const url = siteConfigs.fqdn + path;
   const ogImage = getPostOGImage(socialImage);
 

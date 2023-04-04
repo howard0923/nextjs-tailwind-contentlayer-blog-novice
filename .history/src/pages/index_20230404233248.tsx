@@ -34,7 +34,9 @@ export const getStaticProps: GetStaticProps<Props> = () => {
 };
 
 const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
-  useCommandPalettePostActions(commandPalettePosts);
+  if (!commandPalettePosts) {
+    useCommandPalettePostActions(commandPalettePosts);
+  }
   return (
     <>
       <ArticleJsonLd

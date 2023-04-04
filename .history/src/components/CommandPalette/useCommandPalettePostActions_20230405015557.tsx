@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { PostForCommandPalette } from './getCommandPalettePosts';
 import { type Action } from 'kbar';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { searchAction } from './CommandPalette';
+
 export const useCommandPalettePostActions = (
   posts: PostForCommandPalette[]
 ): void => {
@@ -29,5 +31,5 @@ export const useCommandPalettePostActions = (
     [posts, router]
   );
 
-  useRegisterActions([rootActions, ...actions].filter(Boolean) as Action[]);
+  useRegisterActions([searchAction, ...actions].filter(Boolean) as Action[]);
 };

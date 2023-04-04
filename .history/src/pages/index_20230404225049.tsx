@@ -9,8 +9,8 @@ import generateRSS from '@/lib/generateRSS';
 import {
   getCommandPalettePosts,
   PostForCommandPalette,
-} from '@/components/CommandPalette/getCommandPalettePosts';
-import { useCommandPalettePostActions } from '@/components/CommandPalette/useCommandPalettePostActions';
+} from "@/components/CommandPalette/getCommandPalettePosts";
+import { useCommandPalettePostActions } from "@/components/CommandPalette/useCommandPalettePostActions";
 
 type PostForIndexPage = PostForPostList;
 

@@ -6,6 +6,7 @@ import {
   LightBulbIcon,
   MoonIcon,
   SunIcon,
+  MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
 import {
   ActionId,
@@ -28,7 +29,9 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function CommandPalette({ children }: Props) {
+export const rootAction = [{}];
+
+export function CommandPalette({ children }: Props) {
   const router = useRouter();
   const { setTheme } = useTheme();
 

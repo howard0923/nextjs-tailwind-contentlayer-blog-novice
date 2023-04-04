@@ -29,12 +29,11 @@ export const getStaticProps: GetStaticProps<Props> = () => {
     path: post.path,
   })) as PostForIndexPage[];
   generateRSS();
-
+  useCommandPalettePostActions(commandPalettePosts);
   return { props: { posts, commandPalettePosts } };
 };
 
 const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
-  useCommandPalettePostActions(commandPalettePosts);
   return (
     <>
       <ArticleJsonLd

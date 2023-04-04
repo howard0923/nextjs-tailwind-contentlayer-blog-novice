@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useRegisterActions } from 'kbar';
+import { createAction, useRegisterActions } from 'kbar';
 import { useRouter } from 'next/router';
 import { PostForCommandPalette } from './getCommandPalettePosts';
 import { type Action } from 'kbar';
@@ -19,13 +19,14 @@ export const useCommandPalettePostActions = (
 
   const actions = useMemo(
     () =>
-      posts.map((post) => ({
-        id: post.slug,
-        name: post.title,
-        perform: () => router.push(post.path),
-        section: '搜尋文章',
-        parent: 'search-posts',
-      })),
+      posts.map((post) =>
+        createAction({
+          name: post.title,
+          perform: () => router.push(post.path),
+          section: '搜尋文章',
+          parent: 'Articles',
+        })
+      ),
     [posts, router]
   );
 

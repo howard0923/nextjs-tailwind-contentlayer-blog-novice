@@ -6,6 +6,7 @@ import {
   LightBulbIcon,
   MoonIcon,
   SunIcon,
+  MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
 import {
   ActionId,
@@ -27,6 +28,8 @@ import { KBarSearch } from './KBarSearch';
 type Props = {
   children: React.ReactNode;
 };
+
+export 
 
 export default function CommandPalette({ children }: Props) {
   const router = useRouter();

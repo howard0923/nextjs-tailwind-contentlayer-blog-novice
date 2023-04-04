@@ -6,6 +6,7 @@ import {
   LightBulbIcon,
   MoonIcon,
   SunIcon,
+  MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
 import {
   ActionId,
@@ -28,7 +29,16 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function CommandPalette({ children }: Props) {
+export const rootAction = [{{
+      id: 'search-posts',
+      name: '文章',
+      keywords:
+        'search find posts writing words blog articles thoughts 搜尋 尋找 文章 寫作 部落格',
+      icon: <MagnifyingGlassIcon className="h-6 w-6" />,
+      section: '搜尋',
+    },}];
+
+export function CommandPalette({ children }: Props) {
   const router = useRouter();
   const { setTheme } = useTheme();
 

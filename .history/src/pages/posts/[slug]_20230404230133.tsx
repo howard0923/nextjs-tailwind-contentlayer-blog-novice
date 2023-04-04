@@ -44,6 +44,7 @@ export const getStaticPaths: GetStaticPaths = () => {
 
 export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
   const commandPalettePosts = getCommandPalettePosts();
+  console.log(commandPalettePosts);
   const postIndex = allPostsNewToOld.findIndex(
     (post) => post.slug === params?.slug
   );

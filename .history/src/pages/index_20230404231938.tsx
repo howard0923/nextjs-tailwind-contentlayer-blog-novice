@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ArticleJsonLd } from 'next-seo';
+import React, { useState } from 'react';
 
 import PostList, { PostForPostList } from '@/components/PostList';
 import { siteConfigs } from '@/configs/siteConfigs';
@@ -34,7 +35,10 @@ export const getStaticProps: GetStaticProps<Props> = () => {
 };
 
 const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
-  useCommandPalettePostActions(commandPalettePosts);
+  
+  React.useEffect(() => {
+    useCommandPalettePostActions(commandPalettePosts);
+  }, [commandPalettePosts]);
   return (
     <>
       <ArticleJsonLd

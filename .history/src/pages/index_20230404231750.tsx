@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ArticleJsonLd } from 'next-seo';
+import React, { useState } from 'react';
 
 import PostList, { PostForPostList } from '@/components/PostList';
 import { siteConfigs } from '@/configs/siteConfigs';
@@ -18,6 +19,12 @@ type Props = {
   posts: PostForIndexPage[];
   commandPalettePosts: PostForCommandPalette[];
 };
+React.useEffect(() => {
+  query.setSearch('');
+  //ownRef.current!.focus();
+  query.getInput().focus();
+  return () => query.setSearch('');
+}, [currentRootActionId, query]);
 
 export const getStaticProps: GetStaticProps<Props> = () => {
   const commandPalettePosts = getCommandPalettePosts();
@@ -34,7 +41,6 @@ export const getStaticProps: GetStaticProps<Props> = () => {
 };
 
 const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
-  useCommandPalettePostActions(commandPalettePosts);
   return (
     <>
       <ArticleJsonLd
