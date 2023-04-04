@@ -31,7 +31,6 @@ type Props = {
   post: PostForPostPage;
   prevPost: RelatedPostForPostLayout;
   nextPost: RelatedPostForPostLayout;
-  commandPalettePosts: PostForCommandPalette[];
 };
 
 export const getStaticPaths: GetStaticPaths = () => {
@@ -43,7 +42,6 @@ export const getStaticPaths: GetStaticPaths = () => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
-  const commandPalettePosts = getCommandPalettePosts();
   const postIndex = allPostsNewToOld.findIndex(
     (post) => post.slug === params?.slug
   );
@@ -70,7 +68,7 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
     body: {
       code: postFull.body.code,
       // 加入下面這行 raw
-      raw: postFull.body.raw,
+      raw: postFull.body.raw
     },
   };
 
@@ -84,18 +82,11 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
       post,
       prevPost,
       nextPost,
-      commandPalettePosts,
     },
   };
 };
 
-const PostPage: NextPage<Props> = ({
-  post,
-  prevPost,
-  nextPost,
-  commandPalettePosts,
-}) => {
-  useCommandPalettePostActions(commandPalettePosts);
+const PostPage: NextPage<Props> = ({ post, prevPost, nextPost }) => {
   const {
     description,
     title,

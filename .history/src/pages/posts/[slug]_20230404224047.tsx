@@ -70,7 +70,7 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
     body: {
       code: postFull.body.code,
       // 加入下面這行 raw
-      raw: postFull.body.raw,
+      raw: postFull.body.raw
     },
   };
 
@@ -89,13 +89,7 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
   };
 };
 
-const PostPage: NextPage<Props> = ({
-  post,
-  prevPost,
-  nextPost,
-  commandPalettePosts,
-}) => {
-  useCommandPalettePostActions(commandPalettePosts);
+const PostPage: NextPage<Props> = ({ post, prevPost, nextPost }) => {
   const {
     description,
     title,

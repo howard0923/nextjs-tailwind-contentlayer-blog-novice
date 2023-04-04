@@ -95,7 +95,6 @@ const PostPage: NextPage<Props> = ({
   nextPost,
   commandPalettePosts,
 }) => {
-  useCommandPalettePostActions(commandPalettePosts);
   const {
     description,
     title,
