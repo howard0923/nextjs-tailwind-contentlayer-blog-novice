@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@giscus/react": "^2.2.8",
+    "@heroicons/react": "^2.0.17",
     "@types/node": "18.15.3",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
@@ -25,6 +26,7 @@
     "feed": "^4.2.2",
     "github-slugger": "^2.0.0",
     "image-size": "^1.0.2",
+    "kbar": "0.1.0-beta.40",
     "next": "13.2.4",
     "next-contentlayer": "^0.3.0",
     "next-seo": "^5.15.0",
@@ -41,6 +43,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^6.5.1",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.9",
     "@types/github-slugger": "^2.0.0",
     "@types/nprogress": "^0.2.0",
