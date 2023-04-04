@@ -56,7 +56,7 @@ export function KBarSearch(
   return (
     <input
       {...rest}
-      ref={query.inputRefSetter}
+      ref={ownRef}
       // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus
       autoComplete="off"

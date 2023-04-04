@@ -31,14 +31,13 @@ export function KBarSearch(
   }));
   const [search, setSearch] = useState(searchQuery);
 
-  //const ownRef = React.useRef<HTMLInputElement>(null);
+  const ownRef = React.useRef<HTMLInputElement>(null);
 
   const { defaultPlaceholder, ...rest } = props;
 
   React.useEffect(() => {
     query.setSearch('');
-    //ownRef.current!.focus();
-    query.getInput().focus();
+    ownRef.current!.focus();
     return () => query.setSearch('');
   }, [currentRootActionId, query]);
 
@@ -56,7 +55,7 @@ export function KBarSearch(
   return (
     <input
       {...rest}
-      ref={query.inputRefSetter}
+      ref={ownRef}
       // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus
       autoComplete="off"

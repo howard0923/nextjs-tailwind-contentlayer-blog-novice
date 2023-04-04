@@ -1,10 +1,6 @@
-// Custom KBarSearch component to fix cannot input Chinese issue
-// A replacement of KBarSearch component from kbar
-// import { KBarSearch } from 'kbar';
-// Copied from: https://github.com/timc1/kbar/issues/237#issuecomment-1253691644
-
+// KBarSearch.tsx
 import { useKBar, VisualState } from 'kbar';
-import React, { useState } from 'react';
+import * as React from 'react';
 
 export const KBAR_LISTBOX = 'kbar-listbox';
 export const getListboxItemId = (id: number) => `kbar-listbox-item-${id}`;
@@ -29,15 +25,12 @@ export function KBarSearch(
     activeIndex: state.activeIndex,
     showing: state.visualState === VisualState.showing,
   }));
-  const [search, setSearch] = useState(searchQuery);
-
-  //const ownRef = React.useRef<HTMLInputElement>(null);
+  const [search, setSearch] = React.useState(searchQuery);
 
   const { defaultPlaceholder, ...rest } = props;
 
   React.useEffect(() => {
     query.setSearch('');
-    //ownRef.current!.focus();
     query.getInput().focus();
     return () => query.setSearch('');
   }, [currentRootActionId, query]);
@@ -57,7 +50,6 @@ export function KBarSearch(
     <input
       {...rest}
       ref={query.inputRefSetter}
-      // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus
       autoComplete="off"
       role="combobox"
