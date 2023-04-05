@@ -60,16 +60,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
 ) => {
   const { slug } = context.params!;
   const locale = context.locale!;
-  const path = unifyPath('/posts/' + slug);
-  const matchedRedirectRule = allRedirects.find((rule) => rule.source === path);
-  if (matchedRedirectRule) {
-    return {
-      redirect: {
-        destination: matchedRedirectRule.destination,
-        permanent: matchedRedirectRule.permanent,
-      },
-    };
-  }
   const commandPalettePosts = getCommandPalettePosts();
 
   const postIndex = allPostsNewToOld.findIndex((post) => post.slug === slug);

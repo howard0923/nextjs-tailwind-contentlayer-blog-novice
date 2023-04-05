@@ -19,8 +19,6 @@ import { siteConfigs } from '@/configs/siteConfigs';
 import { allPosts, allPostsNewToOld } from '@/lib/contentLayerAdapter';
 import { getPostOGImage } from '@/lib/getPostOGImage';
 import mdxComponents from '@/lib/mdxComponents';
-import { allRedirects } from '@/lib/getAllRedirects';
-import { unifyPath } from '@/lib/unifyPath';
 
 type PostForPostPage = PostForPostLayout & {
   title: string;
@@ -60,16 +58,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
 ) => {
   const { slug } = context.params!;
   const locale = context.locale!;
-  const path = unifyPath('/posts/' + slug);
-  const matchedRedirectRule = allRedirects.find((rule) => rule.source === path);
-  if (matchedRedirectRule) {
-    return {
-      redirect: {
-        destination: matchedRedirectRule.destination,
-        permanent: matchedRedirectRule.permanent,
-      },
-    };
-  }
   const commandPalettePosts = getCommandPalettePosts();
 
   const postIndex = allPostsNewToOld.findIndex((post) => post.slug === slug);
