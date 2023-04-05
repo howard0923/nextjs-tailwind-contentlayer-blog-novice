@@ -3,10 +3,10 @@ const logoPath = '/logo.png';
 const bannerPath = '/og-image.png';
 
 export const siteConfigs = {
-  title: 'Dev Journal',
-  titleShort: 'Dev Journal',
+  title: 'devSpotlight',
+  titleShort: 'Next Blog',
   description:
-    'share some articles about web development, and some other things',
+    'Blog starter template with modern frontend technologies like Next.js, Tailwind CSS, Contentlayer, i18Next',
   author: 'Howard Chen',
   fqdn: fqdn,
   logoPath: logoPath,

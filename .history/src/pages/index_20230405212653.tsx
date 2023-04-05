@@ -14,6 +14,7 @@ import PostList, { PostForPostList } from '@/components/PostList';
 import { siteConfigs } from '@/configs/siteConfigs';
 import { allPostsNewToOld } from '@/lib/contentLayerAdapter';
 import generateRSS from '@/lib/generateRSS';
+import CustomImage from '@/components/CustomImage';
 
 type PostForIndexPage = PostForPostList;
 
@@ -60,6 +61,12 @@ const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
         datePublished={siteConfigs.datePublished}
         authorName={siteConfigs.author}
         description={siteConfigs.description}
+      />
+
+      <CustomImage
+        src="og-image.png"
+        alt="og-image"
+        className="h-auto max-w-full"
       />
 
       <div className="my-4 divide-y divide-gray-200 transition-colors dark:divide-gray-700 ">

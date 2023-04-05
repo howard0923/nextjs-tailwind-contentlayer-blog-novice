@@ -14,6 +14,7 @@ import PostList, { PostForPostList } from '@/components/PostList';
 import { siteConfigs } from '@/configs/siteConfigs';
 import { allPostsNewToOld } from '@/lib/contentLayerAdapter';
 import generateRSS from '@/lib/generateRSS';
+import CustomImage from '@/components/CustomImage';
 
 type PostForIndexPage = PostForPostList;
 
@@ -61,6 +62,14 @@ const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
         authorName={siteConfigs.author}
         description={siteConfigs.description}
       />
+
+      <div className="prose my-12 space-y-2 transition-colors dark:prose-dark md:prose-lg md:space-y-5">
+        <CustomImage
+          src="og-image.png"
+          alt="og-image"
+          className="h-auto max-w-full"
+        ></CustomImage>
+      </div>
 
       <div className="my-4 divide-y divide-gray-200 transition-colors dark:divide-gray-700 ">
         <div className="prose prose-lg my-8 dark:prose-dark">

@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-10 border-b border-slate-900/10 bg-white/70 py-3 backdrop-blur transition-colors dark:border-slate-50/[0.06] dark:bg-gray-900/60">
-      <div className="mx-8 max-w-full px-4">
+      <div className="px-4 sm:px-6 md:max-w-3xl lg:max-w-5xl">
         <div className="flex items-center justify-between ml-0 sm:ml-4">
           <CustomLink href="/" aria-label={headerConfigs.title}>
             <div className="flex items-center">

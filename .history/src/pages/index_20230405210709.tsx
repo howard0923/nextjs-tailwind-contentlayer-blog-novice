@@ -62,6 +62,10 @@ const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
         description={siteConfigs.description}
       />
 
+      <div className="prose my-12 space-y-2 transition-colors dark:prose-dark md:prose-lg md:space-y-5">
+        <img src=''></img>
+      </div>
+
       <div className="my-4 divide-y divide-gray-200 transition-colors dark:divide-gray-700 ">
         <div className="prose prose-lg my-8 dark:prose-dark">
           <h2>{t('latest-posts')}</h2>

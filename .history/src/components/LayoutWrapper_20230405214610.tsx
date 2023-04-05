@@ -12,14 +12,11 @@ const LayoutWrapper = ({ children }: Props) => {
     <div className="flex min-h-screen w-full flex-col justify-between">
       <div>
         <Header />
-        <div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[70vh]">
-          <CustomImage
-            src="/og-image.png"
-            alt="og-image"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
+        <CustomImage
+          src="og-image.png"
+          alt="og-image"
+          className="h-[40vh] w-[100vw] object-cover"
+        />
         <SectionContainer>
           <main className="mb-auto">{children}</main>
         </SectionContainer>

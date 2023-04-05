@@ -3,8 +3,8 @@ const logoPath = '/logo.png';
 const bannerPath = '/og-image.png';
 
 export const siteConfigs = {
-  title: 'Dev Journal',
-  titleShort: 'Dev Journal',
+  title: 'devJournal',
+  titleShort: 'dev Journal',
   description:
     'share some articles about web development, and some other things',
   author: 'Howard Chen',

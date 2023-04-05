@@ -7,26 +7,23 @@ import MobileNav from '@/components/MobileNav';
 import SectionContainer from '@/components/SectionContainer';
 import ThemeSwitch from '@/components/ThemeSwitch';
 import { headerConfigs } from '@/configs/headerConfigs';
-import CustomImage from '@/components/CustomImage';
+
 export default function Header() {
   const { t } = useTranslation(['common']);
 
   return (
     <header className="sticky top-0 z-10 border-b border-slate-900/10 bg-white/70 py-3 backdrop-blur transition-colors dark:border-slate-50/[0.06] dark:bg-gray-900/60">
-      <div className="mx-8 max-w-full px-4">
-        <div className="flex items-center justify-between ml-0 sm:ml-4">
-          <CustomLink href="/" aria-label={headerConfigs.title}>
-            <div className="flex items-center">
-              <CustomImage
-                src="/images/dev-logo.png"
-                alt="dev-logo"
-                className="h-6 w-6 sm:h-8 sm:w-8 mr-2"
-              />
-              <div className="text-2xl font-semibold sm:text-3xl">
-                {headerConfigs.title}
+      <SectionContainer>
+        <div className="flex items-baseline justify-start">
+          <div>
+            <CustomLink href="/" aria-label={headerConfigs.title}>
+              <div className="flex items-center">
+                <div className="h-6 text-2xl font-semibold sm:block">
+                  {headerConfigs.title}
+                </div>
               </div>
-            </div>
-          </CustomLink>
+            </CustomLink>
+          </div>
 
           <div className="flex items-center text-base leading-5 sm:gap-1">
             <div className="hidden gap-1 sm:flex">
@@ -47,7 +44,7 @@ export default function Header() {
             <MobileNav />
           </div>
         </div>
-      </div>
+      </SectionContainer>
     </header>
   );
 }
