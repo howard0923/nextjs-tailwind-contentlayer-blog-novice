@@ -61,6 +61,15 @@ const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
         authorName={siteConfigs.author}
         description={siteConfigs.description}
       />
+      <div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[70vh]">
+        <div className="relative w-full h-[30vh] sm:h-[40vh] md:h-[70vh]">
+          <CustomImage
+            src="/og-image.png"
+            alt="og-image"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
       <div className="my-4 divide-y divide-gray-200 transition-colors dark:divide-gray-700 ">
         <div className="prose prose-lg my-8 dark:prose-dark">
           <h2>{t('latest-posts')}</h2>

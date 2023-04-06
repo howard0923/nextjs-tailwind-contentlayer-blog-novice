@@ -51,6 +51,12 @@ const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
   useCommandPalettePostActions(commandPalettePosts);
 
   return (
+          <CustomImage
+            src="/og-image.png"
+            alt="og-image"
+            className="w-full h-full object-cover"
+          />
+    
     <LayoutPerPage>
       <ArticleJsonLd
         type="Blog"
