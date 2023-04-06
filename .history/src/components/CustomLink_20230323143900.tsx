@@ -8,7 +8,6 @@ const CustomLink = ({ href, ...rest }: Props) => {
   const isAnchorLink = href && href.startsWith('#'); //錨點鏈結（Anchor Link）是指在網頁中，點擊某一個連結後會跳轉到同一個頁面的某一部分。
 
   if (isInternalLink) {
-    console.log(...rest);
     return (
       <Link href={href} legacyBehavior>
         <a {...rest} />

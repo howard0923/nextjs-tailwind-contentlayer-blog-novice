@@ -5,7 +5,6 @@ import { giscusConfigs } from '@/configs/giscusConfigs';
 
 const Comment = () => {
   const { theme } = useTheme();
-  console.log(giscusConfigs.repo);
   return (
     <div id="comment" className="mx-auto max-w-prose py-6">
       <Giscus
