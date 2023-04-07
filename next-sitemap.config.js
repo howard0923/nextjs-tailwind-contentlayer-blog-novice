@@ -1,5 +1,5 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://nextjs-tailwind-contentlayer-blog-novice.vercel.app/',
+  siteUrl: 'https://devmvpchen.com/',
   generateRobotsTxt: true,
 };
