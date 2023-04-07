@@ -1,0 +1,142 @@
+---
+title: CSR效能優化
+description: CSR效能優化
+slug: csr-optimization
+date: 2023-03-22
+type: Post
+---
+
+## 前言
+
+當談到前端效能優化時，客戶端渲染 (Client-Side Rendering, CSR) 是一個重要的話題。在 CSR 中，瀏覽器必須下載和執行大量的 JavaScript 代碼，生成頁面並將其呈現給用戶。這種方法可能會導致頁面載入速度緩慢，因此我們需要考慮一些效能優化技巧，以改進 CSR 的體驗。
+
+要優化 CSR 效能，可以從以下幾個方面入手：
+
+### 代碼優化
+
+優化代碼可以提高 CSR 效能。例如，在 React 應用中，通常使用 webpack 來打包 JavaScript 代碼。webpack 可以將多個 JavaScript 文件打包成一個或多個 bundle 文件，從而減少請求的數量和大小，以下是一些針對 React 應用的 JavaScript 打包和優化的例子：
+
+使用 React.memo 來避免不必要的渲染，使用 React.lazy 和 React.Suspense 來實現按需求加載，使用 React.useCallback 和 React.useMemo 來避免重複計算等。
+
+- 使用 React.memo 避免不必要的渲染
+
+```jsx MemoComponent.js showLineNumbers
+import React, { memo } from 'react';
+
+const MemoComponent = memo((props) => {
+  return <div>{props.text}</div>;
+});
+```
+
+在這個例子中，使用 React.memo 將組件包裹起來，可以避免在 props 沒有改變的情況下進行不必要的渲染。
+
+- 使用 Code Splitting 來分割 JavaScript 代碼
+
+Code Splitting 是一種將 JavaScript 代碼分割成多個小塊的技術，可以實現按需加載，從而減少首次載入時間，提高 CSR 效能。在 React 應用中，可以使用 React.lazy 和 React.Suspense 來實現 Code Splitting。例如：
+
+```jsx App.js showLineNumbers
+import React, { lazy, Suspense } from 'react';
+
+const LazyComponent = lazy(() => import('./LazyComponent'));
+
+function App() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <LazyComponent />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+在這個例子中，使用 React.lazy 和 React.Suspense 將 LazyComponent 組件分割成一個小塊，按需加載，從而減少首次載入時間，提高 CSR 效能。
+
+- 使用 Tree Shaking 來刪除沒有使用的代碼
+
+Tree Shaking 是一種將沒有使用的 JavaScript 代碼從 bundle 文件中刪除的技術，可以減少 bundle 文件的大小，從而提高 CSR 效能。在 React 應用中，可以使用 babel-plugin-transform-react-remove-prop-types 插件來實現 Tree Shaking。例如：
+
+```jsx .balelrc showLineNumbers
+// .babelrc
+{
+  "plugins": [
+    ["transform-react-remove-prop-types", { "mode": "wrap" }]
+  ]
+}
+```
+
+在這個例子中，使用 babel-plugin-transform-react-remove-prop-types 插件將 React 組件中沒有使用的 prop-types 從 bundle 文件中刪除，從而減少 bundle 文件的大小，提高 CSR 效能。
+
+- 使用 React.useCallback 和 React.useMemo 避免重複計算
+
+```jsx App.js showLineNumbers
+import React, { useCallback, useMemo } from 'react';
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
+
+  const doubleCount = useMemo(() => {
+    return count * 2;
+  }, [count]);
+
+  return (
+    <div>
+      <button onClick={handleClick}>Click me</button>
+      <div>Count: {count}</div>
+      <div>Double Count: {doubleCount}</div>
+    </div>
+  );
+}
+```
+
+在這個例子中，使用 React.useCallback 和 React.useMemo 避免重複計算，可以避免在每次渲染時都重新計算，從而提高 CSR 效能。
+
+代碼優化是提高 CSR 效能的重要手段之一，可以使用 React.memo、React.lazy、React.Suspense、React.useCallback 和 React.useMemo 等工具來進行優化。
+
+### 資源優化
+
+React 本身並不直接涉及到資源優化，但是 React 應用中使用的資源，例如圖片、CSS 和 JavaScript 等，都可以進行優化，從而提高 CSR 效能。以下是一些針對 React 應用的資源優化的例子：
+
+- 使用 CDN 來加速靜態資源的載入
+  在 React 應用中，可以使用 CDN 來加速 React 庫和其他靜態資源的載入。例如，在 index.html 文件中引入 React 庫：
+
+```html index.html showLineNumbers
+<script src="https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js"></script>
+```
+
+使用 CDN 可以從 CDN 上快速載入 React 庫，從而提高 CSR 效能。
+
+- 使用 gzip 壓縮來減少資源的大小
+  在 React 應用中，可以使用 gzip 壓縮 JavaScript 和 CSS 等資源，從而減少資源的大小，提高 CSR 效能。例如，在 webpack 中配置 gzip 壓縮：
+
+```js webpack.config.js showLineNumbers
+const CompressionPlugin = require('compression-webpack-plugin');
+
+module.exports = {
+  // ...
+  plugins: [
+    new CompressionPlugin({
+      test: /\.(js|css)$/,
+      filename: '[path][base].gz',
+    }),
+  ],
+};
+```
+
+這樣可以在打包時對 JavaScript 和 CSS 等資源進行 gzip 壓縮，從而減少資源的大小，提高 CSR 效能。
+
+- 使用圖片壓縮來減少圖片的大小
+  在 React 應用中，可以使用圖片壓縮工具來減少圖片的大小，從而提高 CSR 效能。例如，在 webpack 中使用 image-webpack-loader 來壓縮圖片，這樣可以在打包時對圖片進行壓縮，從而減少圖片的大小，提高 CSR 效能。
+
+資源優化詳解我推薦這篇文章：[網頁效能優化](https://shubo.io/optimize-loading-speed/)
+
+### 預渲染(prerendering)
+
+預渲染也是提高 CSR 效能的一種方式。在 React 應用中，可以使用 React Snap 來實現預渲染，將 CSR 轉換為 SSR，並將 HTML 頁面提前生成，以便在用戶訪問時快速載入。
+
+React Snap 是一個基於 React 的預渲染工具，可以將 React 應用轉換為靜態 HTML 頁面，從而提高 CSR 效能。實際運用可看這篇文章 [Pre-rendering your React app with react-snap](https://blog.logrocket.com/pre-rendering-react-app-react-snap/)
