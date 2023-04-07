@@ -7,7 +7,6 @@ import { giscusConfigs } from '@/configs/giscusConfigs';
 const Comment = () => {
   const { theme } = useTheme();
   const { locale } = useRouter();
-
   return (
     <div id="comment" className="mx-auto max-w-prose py-6">
       <Giscus
