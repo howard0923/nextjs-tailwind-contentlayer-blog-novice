@@ -1,4 +1,4 @@
-const fqdn = 'https://nextjs-tailwind-contentlayer-blog-novice.vercel.app/';
+const fqdn = 'https://devmvpchen.com/';
 const logoPath = '/logo.png';
 const bannerPath = '/og-image.png';
 
