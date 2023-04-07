@@ -45,3 +45,6 @@ next-env.d.ts
 /public/atom.xml
 /public/feed.xml
 /public/feed.json
+
+# history
+.history
