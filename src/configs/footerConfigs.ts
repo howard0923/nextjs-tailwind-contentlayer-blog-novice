@@ -6,6 +6,6 @@ export const footerConfigs = {
       'https://github.com/howard0923/nextjs-tailwind-contentlayer-blog-novice',
     twitter: '',
     facebook: '',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/howardchen0302/',
   },
 };
