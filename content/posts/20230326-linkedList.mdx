@@ -1,0 +1,295 @@
+---
+title: JavaScript實作LinkedList
+description: 以Javascript完成LinkedList的實作
+slug: linkedList
+date: 2023-03-26
+category: dataStructure
+type: Post
+---
+
+## LinkedList 資料結構的基礎知識
+
+LinkedList 資料結構是一種由一連串的節點所組成的鏈結結構，每個節點都包含了資浪和一個指向下一個節點的指針，我們可以通過這些指針來實現對資料的存儲和查詢。LinkedList 的優點是可以快速地增加或刪除節點，缺點是無法像陣列一樣隨機訪問，需要遍歷整個列表才能找到指定位置的節點。
+
+常見的操作有增加節點、刪除節點、查詢節點和遍歷整個 LinkedList。
+
+![LinkedList 示意圖](https://i1.faceprep.in/Companies-1/types-of-linked-list.png)
+
+圖片來源 : [faceprep](https://i1.faceprep.in/Companies-1/types-of-linked-list.png)
+
+## JavaScript 實作 LinkedList
+
+以下代碼可在我的 Github 上找到
+
+[https://github.com/howard0923/DataStructure_javascript](https://github.com/howard0923/DataStructure_javascript)
+
+接下來我們來看一下如何用 JavaScript 實作 LinkedList。首先我們需要定義 LinkedList 的 Node 類別，它包含了一個 data 屬性和一個 next 屬性，data 屬性用於儲存節點的數據，next 屬性用於指向下一個節點。
+
+```js LinkedList.js showLineNumbers
+// ListNode
+class ListNode {
+  constructor(data) {
+    this.data = data;
+    this.next = null;
+  }
+}
+```
+
+接著我們定義 LinkedList 類別，它包含了一個 head 屬性，用於指向第一個節點。
+
+```js LinkedList.js showLineNumbers
+// LinkedList
+class LinkedList {
+  constructor(head = null) {
+    this.head = head;
+  }
+}
+```
+
+接下來實際建立 LinkedList
+
+```js LinkedList.js showLineNumbers
+// create new list nodes
+
+let node1 = new ListNode(2);
+let node2 = new ListNode(3);
+node1.next = node2;
+
+// create LinkedList with head node1
+let list = new LinkedList(node1);
+
+// access the nodes in the list
+console.log(list.head.data); //2
+console.log(list.head.next.data); //3
+```
+
+接下來實現 LinkedList 基本操作，例如 add、remove 和 find 等
+
+### size()
+
+時間複雜度 O(n)
+
+```js LinkedList.js showLineNumbers
+// 1.size()
+// returns the number of nodes in the LinkedLists
+LinkedList.prototype.size = function () {
+  let count = 0;
+  let node = this.head;
+  while (node) {
+    count++;
+    node = node.next;
+  }
+  return count;
+};
+
+// returns the number of nodes in the LinkedLists
+console.log(list.size()); // 2
+```
+
+### clear()
+
+時間複雜度 O(1)
+
+```js LinkedList.js showLineNumbers
+///2. clear()
+// removes all nodes from the LinkedList
+LinkedList.prototype.clear = function () {
+  this.head = null;
+};
+
+//list.clear();
+console.log(list); // null
+```
+
+### getLast()
+
+時間複雜度 O(n)
+
+```js LinkedList.js showLineNumbers
+// 3. getLast()
+// returns the last node in the LinkedList
+LinkedList.prototype.getLast = function () {
+  let lastNode = this.head;
+  if (lastNode) {
+    while (lastNode.next) {
+      lastNode = lastNode.next;
+    }
+  }
+  return lastNode;
+};
+
+console.log(list.getLast()); // ListNode { data: 3, next: null }
+```
+
+### getFirst()
+
+時間複雜度 O(1)
+
+```js LinkedList.js showLineNumbers
+// 4.getFirst()
+// returns the first node in the LinkedList
+LinkedList.prototype.getFirst = function () {
+  let firstNode = this.head;
+  return firstNode;
+};
+
+console.log(list.getFirst()); // ListNode { data: 2, next: ListNode { data: 3, next: null } }
+```
+
+### add()
+
+時間複雜度 O(n)
+
+```js LinkedList.js showLineNumbers
+// 5.add()
+// adds a node to the end of the LinkedList
+LinkedList.prototype.add = function (data) {
+  const newNode = new ListNode(data);
+  if (this.head === null) {
+    this.head = newNode;
+  } else {
+    let current = this.head;
+    while (current.next) {
+      current = current.next;
+    }
+    current.next = newNode;
+  }
+};
+
+list.add(4);
+console.log(list.getLast()); // ListNode { data: 4, next: null }
+```
+
+### remove()
+
+時間複雜度 O(n)
+
+```js LinkedList.js showLineNumbers
+// 6. remove()
+// removes a node from the LinkedList
+LinkedList.prototype.remove = function (data) {
+  if (!this.head) {
+    return;
+  }
+  let current = this.head;
+  if (current.data === data) {
+    this.head = current.next;
+    return;
+  }
+  while (current.next) {
+    if (current.next.data === data) {
+      current.next = current.next.next;
+      return;
+    }
+    current = current.next;
+  }
+};
+
+list.remove(3);
+console.log(list); // LinkedList { head: ListNode { data: 2, next: ListNode { data: 4, next: null } } }
+```
+
+### find()
+
+時間複雜度 O(n)
+
+```js LinkedList.js showLineNumbers
+// 7.find()
+// returns the first node that contains the provided data
+
+LinkedList.prototype.find = function (data) {
+  let current = this.head;
+  while (current) {
+    if (current.data === data) {
+      return current;
+    }
+    current = current.next;
+  }
+  return null;
+};
+
+console.log(list.find(4)); // ListNode { data: 4, next: null }
+```
+
+### getAt()
+
+時間複雜度 O(n)
+
+```js LinkedList.js showLineNumbers
+// 8. getAt()
+// returns the node at the provided index
+LinkedList.prototype.getAt = function (index) {
+  let current = this.head;
+  let count = 0;
+  while (current) {
+    if (count === index) {
+      return current;
+    }
+    count++;
+    current = current.next;
+  }
+  return null;
+};
+
+console.log(list.getAt(0)); // ListNode { data: 2, next: ListNode { data: 4, next: null } }
+```
+
+### insertAt()
+
+時間複雜度 O(n)
+
+```js LinkedList.js showLineNumbers
+// 9. insertAt()
+// inserts a node at a specific index in the LinkedList
+LinkedList.prototype.insertAt = function (data, index) {
+  if (!this.head) {
+    this.head = new ListNode(data);
+    return;
+  }
+  if (index === 0) {
+    this.head = new ListNode(data, this.head);
+    return;
+  }
+  const previous = this.getAt(index - 1);
+  if (previous && !previous.next) {
+    previous.next = new ListNode(data);
+  } else if (!previous) {
+    return 'Index out of bounds';
+  } else {
+    previous.next = new ListNode(data, previous.next);
+  }
+};
+list.insertAt(5, 2); // insert 5 at index 2
+console.log(list.insertAt(5, 4)); //  Index out of bounds
+```
+
+### reverse()
+
+時間複雜度 O(n)
+
+```js LinkedList.js showLineNumbers
+// 10.reverse()
+// reverses the LinkedList
+LinkedList.prototype.reverse = function () {
+  let current = this.head;
+  if (!current) {
+    return null;
+  }
+  let previous = null;
+  // [head -> second -> third -> last -> null] to [null <- head <- second <- third <- last]
+  // 1.record head.next and set head.next to null
+  // 2.set current.next to previous node
+  // 3.set previous to current node
+  // 4.set current to nextNode
+  while (current) {
+    let next = current.next;
+    current.next = previous;
+    previous = current;
+    current = next;
+  }
+  this.head = previous;
+};
+console.log(list); // LinkedList { head: ListNode { data: 2, next: ListNode { data: 4, next: ListNode { data: 5, next: null } } } }
+list.reverse();
+console.log(list); // LinkedList { head: ListNode { data: 5, next: ListNode { data: 4, next: ListNode { data: 2, next: null } } } }
+```
