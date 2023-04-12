@@ -1,0 +1,194 @@
+---
+title: JavaScript 實作 DoublyLinkedList
+description: 以 Javascript 完成 DoublyLinkedList 的實作
+slug: doublyLinkedList
+date: 2023-03-27
+category: dataStructure
+type: Post
+---
+
+## 介紹
+
+Doubly Linked List 是一種常見的資料結構，與傳統的 Linked List 不同，它可以在每個節點中保存指向前一個節點和後一個節點的指針，從而可以在鏈表中向前和向後遍歷。也就是說，它可以被概念為兩個 Linked List ，不過指向的順序相反。由於 Doubly Linked List 提供了這種額外的指針，它可以更有效地支持在任意位置進行插入和刪除操作。
+
+![Doubly LinkedList 示意圖](https://github.com/trekhleb/javascript-algorithms/raw/master/src/data-structures/doubly-linked-list/images/doubly-linked-list.jpeg)
+
+圖片來源 : [trekhelb](https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/doubly-linked-list/README.zh-CN.md)
+
+## JavaScript 實現雙向鏈表的基本操作
+
+以下代碼可在我的 Github 上找到
+
+[https://github.com/howard0923/DataStructure_javascript/blob/main/
+dataStructure/Double_Linked_Lists.js](https://github.com/howard0923/DataStructure_javascript/blob/main/dataStructure/Double_Linked_Lists.js)
+
+### getLength()
+
+時間複雜度 O(1)
+
+```js doubly-linked-list.js showLineNumbers
+function Node(data) {
+  this.data = data;
+  this.next = null;
+  this.prev = null;
+}
+
+function DoublyLinkedList() {
+  this.head = null;
+  this.tail = null;
+
+  // getLength()
+  // returns the number of nodes in the LinkedLists
+  this.getLength = function () {
+    let count = 0;
+    let node = this.head;
+    while (node) {
+      count++;
+      node = node.next;
+    }
+    return count;
+  };
+
+  // 在尾部添加一個節點
+  this.append = function (data) {
+    const newNode = new Node(data);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.prev = this.tail;
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+  };
+}
+```
+
+### append()
+
+在尾部添加一個節點
+
+時間複雜度 O(1)
+
+```js doubly-linked-list.js showLineNumbers
+// 在尾部添加一個節點
+this.append = function (data) {
+  const newNode = new Node(data);
+  if (!this.head) {
+    this.head = newNode;
+    this.tail = newNode;
+  } else {
+    newNode.prev = this.tail;
+    this.tail.next = newNode;
+    this.tail = newNode;
+  }
+};
+```
+
+### insert()
+
+在指定位置插入一個節點
+
+時間複雜度 O(n)
+
+```js doubly-linked-list.js showLineNumbers
+/ 在指定的位置插入一個節點
+  this.insert = function (position, data) {
+    if (position < 0 || position > this.getLength() || !position) {
+      return false;
+    }
+    const newNode = new Node(data);
+    if (position === 0) {
+      if (!this.head) {
+        this.head = newNode;
+        this.tail = newNode;
+      } else {
+        newNode.next = this.head;
+        this.head.prev = newNode;
+        this.head = newNode;
+      }
+    } else if (position === this.getLength()) {
+      newNode.prev = this.tail;
+      this.tail.next = newNode;
+      this.tail = newNode;
+    } else {
+      let current = this.head;
+      let index = 0;
+      while (index < position) {
+        current = current.next;
+        index++;
+      }
+      // ex: head -> newNode -> current Node(2) -> Node(3)
+      // set newNode.prev = current.prev
+      // set newNode.next = current
+      // set head.next = newNode -> set current.prev.next = newNode
+      // set current.prev = newNode;
+      newNode.prev = current.prev;
+      newNode.next = current;
+      current.prev.next = newNode;
+      current.prev = newNode;
+    }
+    return true;
+  };
+```
+
+### remove()
+
+刪除指定位置的節點
+
+時間複雜度 O(n)
+
+```js doubly-linked-list.js showLineNumbers
+// 從指定的位置移除一個節點
+this.remove = function (position) {
+  if (position < 0 || position >= this.getLength() || !position) {
+    return false;
+  }
+  if (position === 0) {
+    this.head = this.head.next;
+    if (this.getLength() === 1) {
+      this.tail = null;
+    } else {
+      this.head.prev = null;
+    }
+  } else if (position === this.getLength() - 1) {
+    this.tail = this.tail.prev;
+    this.tail.next = null;
+  } else {
+    let current = this.head;
+    let index = 0;
+    while (index < position) {
+      current = current.next;
+      index++;
+    }
+    // head -> currentNode -> Node(3)
+    // head.next = Node(3) -> current.prev.next = current.next
+    // current.next.prev = current.prev
+    current.prev.next = current.next;
+    current.next.prev = current.prev;
+  }
+  return true;
+};
+```
+
+### get()
+
+獲取指定位置的節點
+
+時間複雜度 O(n)
+
+```js doubly-linked-list.js showLineNumbers
+// 返回指定位置的節點
+this.get = function (position) {
+  if (position < 0 || position >= this.getLength() || !position) {
+    return false;
+  }
+  let current = this.head;
+  let index = 0;
+  while (index < position) {
+    current = current.next;
+    index++;
+  }
+  return current;
+};
+```
