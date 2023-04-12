@@ -1,0 +1,103 @@
+---
+title: JavaScript 實作 Queue
+description: 以 Javascript 完成 Queue 的實作
+slug: queue
+date: 2023-03-27
+category: dataStructure
+type: Post
+---
+
+## 介紹
+
+Queue（佇列）是一種常見的資料結構，佇列在新增與刪除資料必須在不同端進行，在資料的尾端添加新資料，前端刪除舊資料。其特性是「先進先出」（First In First Out, FIFO），也就是最先進入的資料會最先被取出。
+
+![Queue 示意圖](https://raw.githubusercontent.com/trekhleb/javascript-algorithms/master/src/data-structures/queue/images/queue.jpeg)
+
+圖片來源 : [trekhelb](https://github.com/trekhleb/javascript-algorithms/blob/master/src/data-structures/queue/README.zh-CN.md)
+
+## JavaScript 實現佇列的基本操作
+
+以下代碼可在我的 Github 上找到
+
+[https://github.com/howard0923/DataStructure_javascript/blob/main/
+dataStructure/Double_Linked_Lists.js](https://github.com/howard0923/DataStructure_javascript/blob/main/dataStructure/Double_Linked_Lists.js)
+
+### 新增資料 enqueue()
+
+時間複雜度 : O(1)
+
+```js Queue.js showLineNumbers
+// Queue
+class Queue {
+  constructor(){
+    this.items = [];
+  }
+
+  // 尾端新增資料
+  enqueue (element) {
+    this.items.push(element);
+  }
+```
+
+### 刪除資料 dequeue()
+
+時間複雜度 : O(1)
+
+```js Queue.js showLineNumbers
+  // 前端刪除資料
+  dequeue (){
+    if(this.items.length === 0){
+      return "Queue is empty";
+    }
+    return this.items.shift();
+  }
+```
+
+### 取得佇列的第一個元素 front()
+
+時間複雜度 : O(1)
+
+```js Queue.js showLineNumbers
+  // 查看佇列的第一個元素
+  front (){
+    if(this.items.length === 0){
+      return "Queue is empty";
+    }
+    return this.items[0];
+  }
+```
+
+### 查看佇列中的元素數量
+
+時間複雜度 : O(1)
+
+```js Queue.js showLineNumbers
+  // 查看佇列中的元素數量
+  size(){
+    return this.items.length;
+  }
+```
+
+測試程式碼
+
+```js Queue.js showLineNumbers
+// 建立一個 Queue 物件
+const queue = new Queue();
+
+// 新增資料
+queue.enqueue(10);
+queue.enqueue(20);
+queue.enqueue(30);
+
+// 查看佇列中的元素個數
+console.log(queue.size()); // 輸出：3
+
+// 查看佇列的第一個元素
+console.log(queue.front()); // 輸出：10
+
+// 刪除佇列的第一個元素
+queue.dequeue();
+
+// 查看佇列的第一個元素
+console.log(queue.front()); // 輸出：20
+```
