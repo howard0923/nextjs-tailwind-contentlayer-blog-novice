@@ -1,4 +1,4 @@
-import { useRegisterActions } from 'kbar';
+import { ActionSection, useRegisterActions } from 'kbar';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
@@ -20,7 +20,7 @@ export const useCommandPaletteLocaleActions = () => {
         perform: () => changeLocale('en'),
         icon: <span className="p-1">EN</span>,
         parent: 'language',
-        section: t('operation'),
+        section: t('operation') as ActionSection,
       },
       {
         id: 'language-chinese',
@@ -30,7 +30,7 @@ export const useCommandPaletteLocaleActions = () => {
         perform: () => changeLocale('zh-TW'),
         icon: <span className="p-1">TW</span>,
         parent: 'language',
-        section: t('operation'),
+        section: t('operation') as ActionSection,
       },
     ],
     [asPath]

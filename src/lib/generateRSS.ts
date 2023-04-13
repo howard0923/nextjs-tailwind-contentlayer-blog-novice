@@ -36,7 +36,7 @@ export default function generateRSS() {
       title: post.title,
       link: siteConfigs.fqdn + post.path,
       description: post.description,
-      image: getPostOGImage(post.socialImage),
+      image: getPostOGImage(post.socialImage || ''),
       author: [author],
       contributor: [author],
       date: new Date(post.date),

@@ -1,9 +1,10 @@
 import { withContentlayer } from 'next-contentlayer';
 import i18nConfig from './next-i18next.config.js';
+import withPWA from 'next-pwa';
 
 const { i18n } = i18nConfig;
 /** @type {import('next').NextConfig} */
-const nextConfig = withContentlayer({
+const config = withContentlayer({
   reactStrictMode: true,
   experimental: {
     newNextLinkBehavior: false,
@@ -35,5 +36,12 @@ const nextConfig = withContentlayer({
     formats: ['image/avif', 'image/webp'],
   },
 });
+
+const nextConfig = withPWA({
+  dest: 'public',
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+  register: true,
+})(config);
 
 export default nextConfig;
