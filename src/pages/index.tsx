@@ -3,7 +3,6 @@ import { GetStaticProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { ArticleJsonLd } from 'next-seo';
-
 import {
   getCommandPalettePosts,
   PostForCommandPalette,
@@ -14,7 +13,7 @@ import PostList, { PostForPostList } from '@/components/PostList';
 import { siteConfigs } from '@/configs/siteConfigs';
 import { allPostsNewToOld } from '@/lib/contentLayerAdapter';
 import generateRSS from '@/lib/generateRSS';
-
+import Script from 'next/script';
 type PostForIndexPage = PostForPostList;
 
 type Props = {
@@ -62,6 +61,21 @@ const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
         authorName={siteConfigs.author}
         description={siteConfigs.description}
       />
+      <div>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-L4X2G0ZT2Q"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-L4X2G0ZT2Q');
+          `}
+        </Script>
+      </div>
       <div className="my-4 divide-y divide-gray-200 transition-colors dark:divide-gray-700 ">
         <div className="prose prose-lg my-8 dark:prose-dark">
           <h2>{t('latest-posts')}</h2>
