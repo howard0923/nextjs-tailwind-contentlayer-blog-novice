@@ -1,0 +1,109 @@
+---
+title: 使用 useImmer 簡化 React 應用的狀態管理
+description: 使用 useImmer 簡化 React 應用的狀態管理
+slug: useImmer
+date: 2023-04-01
+type: Post
+---
+
+## 介紹
+
+useImmer 是一個 React Hook，它可以更方便地管理可變的狀態，對於一些複雜的狀態處理會很有幫助。
+
+例如，以下程式碼分別使用 usestate 和 useImmer 來管理狀態：
+
+```js List.js showLineNumbers
+import { useState } from 'react';
+import { useImmer } from 'use-immer';
+
+const initialList = [
+  { id: 0, title: 'Big Bellies', seen: false },
+  { id: 1, title: 'Lunar Landscape', seen: false },
+  { id: 2, title: 'Terracotta Army', seen: true },
+];
+
+const ItemList = ({ items, onToggle }) => {
+  return (
+    <ul>
+      {items.map((item) => {
+        return (
+          <li>
+            <label>
+              <input
+                type="checkbox"
+                checked={item.seen}
+                onChange={(e) => {
+                  onToggle(item.id, !item.seen);
+                }}
+              ></input>
+              {item.title}
+            </label>
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
+export default function BucketList() {
+  const [list, setList] = useState(initialList);
+  //使用 useState 更新狀態
+  const handleToggle = (itemId, seen) => {
+    setList(
+      list.map((item) => {
+        if (item.id === itemId) {
+          return { ...item, seen: seen };
+        } else {
+          return { ...item };
+        }
+      })
+    );
+  };
+
+  return (
+    <div>
+      <h1>Art Bucket List</h1>
+      <h2>My list of art to see</h2>
+      <ItemList items={list} onToggle={handleToggle} />
+    </div>
+  );
+}
+```
+
+### 使用 useState 更新狀態
+
+```js List.js showLineNumbers
+const [list, setList] = useState(initialList);
+//使用 useState 更新狀態
+const handleToggle = (itemId, seen) => {
+  setList(
+    list.map((item) => {
+      if (item.id === itemId) {
+        return { ...item, seen: seen };
+      } else {
+        return { ...item };
+      }
+    })
+  );
+};
+```
+
+### 使用 useImmer 更新狀態
+
+```js List.js showLineNumbers
+//使用 useImmer 更新狀態
+const [list, updateList] = useImmer(initialList);
+
+const handleToggle = (itemId, seen) => {
+  updateList((draft) => {
+    const item = draft.find((x) => x.id === itemId);
+    item.seen = seen;
+  });
+};
+```
+
+## 總結
+
+在更新 state 時，不應該直接改變 state 中的對象，需要先複製一份，再對複製的對象進行修改，再將修改後的對象賦值給 state，這樣才能觸發重新渲染。
+
+使用 useState 來更新狀態時，經常需要使用回調函數，這使得狀態更新變得不直觀，使用 useImmer 我們就可以在更新狀態時直接對 draft 進行更改，而不需要像 useState 一樣，使用回調函數來更新狀態。可以獲得更方便和可讀性更高的狀態更新方法。
