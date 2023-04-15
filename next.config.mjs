@@ -1,10 +1,10 @@
 import { withContentlayer } from 'next-contentlayer';
 import i18nConfig from './next-i18next.config.js';
-import withPWA from 'next-pwa';
+// import withPWA from 'next-pwa';
 
 const { i18n } = i18nConfig;
 /** @type {import('next').NextConfig} */
-const config = withContentlayer({
+const nextConfig = withContentlayer({
   reactStrictMode: true,
   experimental: {
     newNextLinkBehavior: false,
@@ -37,11 +37,9 @@ const config = withContentlayer({
   },
 });
 
-const nextConfig = withPWA({
-  dest: 'public',
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development',
-  register: true,
-})(config);
+// const nextConfig = withPWA({
+//   dest: 'public',
+//   register: true,
+// })(config);
 
 export default nextConfig;

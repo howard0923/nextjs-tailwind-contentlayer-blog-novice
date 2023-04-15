@@ -4,7 +4,7 @@ function MyDocument() {
   return (
     <Html>
       <Head>
-        <link rel="manifest" href="/manifest.json" />
+        {/* <link rel="manifest" href="/manifest.json" /> */}
         <meta
           name="google-site-verification"
           content="UMtHN4J7jBTwMXYt7-tDZlBLaupqDytaRV_uBKHEIyY"

@@ -13,7 +13,7 @@ import PostList, { PostForPostList } from '@/components/PostList';
 import { siteConfigs } from '@/configs/siteConfigs';
 import { allPostsNewToOld } from '@/lib/contentLayerAdapter';
 import generateRSS from '@/lib/generateRSS';
-import Script from 'next/script';
+//import Script from 'next/script';
 type PostForIndexPage = PostForPostList;
 
 type Props = {
@@ -61,7 +61,7 @@ const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
         authorName={siteConfigs.author}
         description={siteConfigs.description}
       />
-      <div>
+      {/* <div>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-L4X2G0ZT2Q"
           strategy="afterInteractive"
@@ -75,7 +75,7 @@ const Home: NextPage<Props> = ({ posts, commandPalettePosts }) => {
           gtag('config', 'G-L4X2G0ZT2Q');
           `}
         </Script>
-      </div>
+      </div> */}
       <div className="my-4 divide-y divide-gray-200 transition-colors dark:divide-gray-700 ">
         <div className="prose prose-lg my-8 dark:prose-dark">
           <h2>{t('latest-posts')}</h2>
