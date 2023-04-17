@@ -54,18 +54,60 @@ function App() {
 
 - 使用 Tree Shaking 來刪除沒有使用的代碼
 
-Tree Shaking 是一種將沒有使用的 JavaScript 代碼從 bundle 文件中刪除的技術，可以減少 bundle 文件的大小，從而提高 CSR 效能。在 React 應用中，可以使用 babel-plugin-transform-react-remove-prop-types 插件來實現 Tree Shaking。例如：
+Tree Shaking 是一種將沒有使用的 JavaScript 代碼從 bundle 文件中刪除的技術，可以減少 bundle 文件的大小，從而提高 CSR 效能。
 
-```jsx .balelrc showLineNumbers
-// .babelrc
+以下是一些在 React 中使用 Tree Shaking 的步驟：
+
+1. 使用 ES6 模組化語法：確保您的程式碼使用 ES6 模組化語法，以便打包工具（Webpack）能夠正確識別和優化未被使用的程式碼。
+
+```jsx showLineNumbers
+export default function MyComponent(props) {
+  // ...
+}
+```
+
+2.設定 Webpack：在打包工具的設定中啟用 Tree Shaking，babel 的 env.module 必須為 false
+
+```jsx webpack.config.js showLineNumbers
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: babel-loader,
+          /* This configuration aids babel-preset-env to disable transpiling of import or export modules to commonJS */
+          options: {
+            presets: [
+              [ 'es2015', { modules: false }]
+            ]
+          }
+        }
+      }
+    ]
+  },
+  plugin: [ new HtmlWebPackPlugin ({
+    template: './src/index.html',
+    fileName: './index.html'
+  });
+}
+```
+
+```jsx package.json showLineNumbers
 {
-  "plugins": [
-    ["transform-react-remove-prop-types", { "mode": "wrap" }]
+  "name": "Tree Shaking Project",
+  "side-effects": false,
+  // And for when you want to notify webpack of files with side-effects.
+  "side-effects": [
+    "name-of-file.js
   ]
 }
 ```
 
-在這個例子中，使用 babel-plugin-transform-react-remove-prop-types 插件將 React 組件中沒有使用的 prop-types 從 bundle 文件中刪除，從而減少 bundle 文件的大小，提高 CSR 效能。
+在這個例子中，使用 webpack 將 React 組件中沒有使用的 js code 從 bundle 文件中刪除，從而減少 bundle 文件的大小，提高 CSR 效能。
 
 - 使用 React.useCallback 和 React.useMemo 避免重複計算
 
