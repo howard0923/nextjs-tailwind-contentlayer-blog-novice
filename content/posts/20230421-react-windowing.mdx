@@ -1,0 +1,129 @@
+---
+title: React window 解析
+description: 分析 react window 的實現原理，以及如何自定義 react window 的實現
+slug: react-windowing
+date: 2023-04-21
+type: Post
+---
+
+## VirtualizedList
+
+當有大量資料需要渲染時，就需要考慮到系統效能，傳統方法可能會使用分頁來加載數據，不過可能會面對頁面包含大量數據
+或圖片數據時，以及無法使用分頁的情況，這時候就能考慮使用 VirtualizedList (虛擬列表)，虛擬列表只對目前`可見區域`進行渲染，假設在螢幕上最多只能看見 10 個項目，那麼只會渲染 10 個項目，而不是全部的項目，隨著頁面滾動，將滑出可視區的項目移除，並渲染新的項目，這樣就能有效的減少系統的負擔。
+
+![虛擬列表示意圖](https://res.cloudinary.com/practicaldev/image/fetch/s--oXZ5Tzeu--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ek5prpbhf48g9xux5get.png)
+
+圖片來源:[https://res.cloudinary.com/practicaldev/image/fetch/s--oXZ5Tzeu--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ek5prpbhf48g9xux5get.png](https://res.cloudinary.com/practicaldev/image/fetch/s--oXZ5Tzeu--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ek5prpbhf48g9xux5get.png)
+
+那麼虛擬列表是如何判斷目前可視區域的項目呢？這就需要用到`scroll`事件，當頁面滾動時，就會觸發`scroll`事件，透過獲取滾動條距離頁面頂端的距離`scrollTop`和真實列表長度`scrollHeight`來判斷目前可視區域的項目，舉例來說，目前可見區域的高度為 500px ，而列表項的高度為 50px，而 scrollTop 為 100px，那麼可見區域的項目為 3-12。
+
+## react window
+
+### FixedSizeList
+
+當列表中的每一個項目大小相同時，可以使用 react window 中的 `FixedSizeList` 組件。以下是簡單的實現:
+
+```jsx:ListComponent.js showLineNumbers
+import React from 'react';
+import { FixedSizeList } from 'react-window';
+
+import RowComponent from './RowComponent';
+
+import items from '../data/mock.json';
+
+const Row = ({ index, style }) => (
+  <RowComponent image={items[index]} num={index} style={style} />
+);
+
+const ListComponent = () => (
+  <FixedSizeList
+    height={500}
+    width={500}
+    itemSize={160}
+    itemCount={items.length}
+    className="list-container"
+  >
+    {Row}
+  </FixedSizeList>
+);
+
+export default ListComponent;
+```
+
+```jsx:RowComponent.js showLineNumbers
+import React from 'react';
+
+const RowComponent = ({ image, num, style }) => (
+  <div style={style} className={'list-group-item'}>
+    <div className="avatar">
+      <img alt="avatar" src={image} />
+    </div>
+
+    <div className="details">
+      <div className="info">
+        <p className="number">#{num + 1}</p>
+      </div>
+    </div>
+  </div>
+);
+
+export default RowComponent;
+```
+
+`mock.json` 請參照這個連結 : [mock.json](https://glitch.com/edit/#!/react-window-fixed?path=src%2Fmock.json%3A1002%3A1)
+
+react window 是如何決定渲染哪些元素呢?這邊我們可以看到其中的源碼:
+
+[github-react-window](https://github.com/bvaughn/react-window/blob/master/src/createListComponent.js)
+
+在監聽到 onScroll 事件時，算出目前捲動區域頂部邊緣與可見視窗頂部邊緣的距離，並將其限制在捲動區域的可見範圍內，並更新 offset 狀態。
+
+這裡描述一下 client Height 、 offset Height 和 scroll Height 的差異:
+
+![Scroll事件示意圖](https://shubo.io/static/89a5cfb0e676baf28dafc3ae9f339355/f1c64/size-cheatsheet.png)
+
+[圖片來源](https://blog.csdn.net/hljqfl/article/details/85677410)
+
+接下來透過`getStartIndexForOffset` 和 `getStopIndexForOffset` 來呈現可視區域的項目
+
+```js:FixedSizeList.js showLineNumbers
+  getStartIndexForOffset: (
+    { itemCount, itemSize }: Props<any>,
+    offset: number
+  ): number =>
+    Math.max(
+      0,
+      Math.min(itemCount - 1, Math.floor(offset / ((itemSize: any): number)))
+    ),
+
+  getStopIndexForStartIndex: (
+    { direction, height, itemCount, itemSize, layout, width }: Props<any>,
+    startIndex: number,
+    scrollOffset: number
+  ): number => {
+    // TODO Deprecate direction "horizontal"
+    const isHorizontal = direction === 'horizontal' || layout === 'horizontal';
+    const offset = startIndex * ((itemSize: any): number);
+    const size = (((isHorizontal ? width : height): any): number);
+    const numVisibleItems = Math.ceil(
+      (size + scrollOffset - offset) / ((itemSize: any): number)
+    );
+    return Math.max(
+      0,
+      Math.min(
+        itemCount - 1,
+        startIndex + numVisibleItems - 1 // -1 is because stop index is inclusive
+      )
+    );
+  },
+```
+
+getStartIndexForOffset 會根據 itemSize 和 offset 參數計算出當前捲動區域內顯示的第一個元素的索引，並返回這個索引值。
+
+getStopIndexForStartIndex 這個函式的作用是根據 startIndex 和 scrollOffset 參數來計算當前捲動區域內顯示的最後一個元素的索引。它會計算出在捲動區域內能夠顯示的元素數量，並根據這個數量和 startIndex 參數計算出最後一個元素的索引值。最後，函式使用 Math.min 和 Math.max 函式限制了計算出的索引值的範圍，以確保索引值不會超出預期範圍。
+
+### VariableSizeList
+
+### Infinite Scroll
+
+`未完待續.....`

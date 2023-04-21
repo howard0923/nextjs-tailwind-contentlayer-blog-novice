@@ -129,7 +129,7 @@ class HashTable {
   }
 ```
 
-2. 創建一個 function，用來 transform keys into indics hash()。
+2. 創建一個 function `hash()`，用來 transform keys into indics。
 
 ```js example.js showLineNumbers
 hash(key){
@@ -141,7 +141,7 @@ hash(key){
   }
 ```
 
-3. 創建 function，用來將鍵值對（key-value pair）添加到哈希表中及檢索 key-value pair set() get()。
+3. 創建 function `set()、get()`，用來將鍵值對（key-value pair）添加到哈希表中及檢索 key-value pair 。
 
 時間複雜度 O(1)
 
@@ -211,9 +211,6 @@ console.log(ht_collision.get('ǻ')); // [ 'ǻ', 192 ]
 
 ```js example.js showLineNumbers
 // ------------------hash table collision--------------------------------------
-console.log(
-  '------------------hash table collision--------------------------------------'
-);
 
 class HashTableCollision {
   constructor() {
