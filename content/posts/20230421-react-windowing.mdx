@@ -15,7 +15,7 @@ type: Post
 
 圖片來源:[https://res.cloudinary.com/practicaldev/image/fetch/s--oXZ5Tzeu--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ek5prpbhf48g9xux5get.png](https://res.cloudinary.com/practicaldev/image/fetch/s--oXZ5Tzeu--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ek5prpbhf48g9xux5get.png)
 
-那麼虛擬列表是如何判斷目前可視區域的項目呢？這就需要用到`scroll`事件，當頁面滾動時，就會觸發`scroll`事件，透過獲取滾動條距離頁面頂端的距離`scrollTop`和真實列表長度`scrollHeight`來判斷目前可視區域的項目，舉例來說，目前可見區域的高度為 500px ，而列表項的高度為 50px，而 scrollTop 為 100px，那麼可見區域的項目為 3-12。
+那麼虛擬列表是如何判斷目前可視區域的項目呢？這就需要用到`scroll`事件，當頁面滾動時，就會觸發`scroll`事件，透過獲取滾動條距離頁面頂端的距離`scrollTop`和真實列表長度`scrollHeight`來判斷目前可視區域的項目，舉例來說，目前可見區域的高度為 500px ，而列表項的高度為 50px，而 scrollTop 為 100px，那麼可見區域的項目為 3-10。
 
 ## react window
 
@@ -126,4 +126,4 @@ getStopIndexForStartIndex 這個函式的作用是根據 startIndex 和 scrollOf
 
 ### Infinite Scroll
 
-`未完待續.....目前正在嘗試手刻react window功能 test...`
+`未完待續.....目前正在嘗試手刻react window功能`
