@@ -77,40 +77,31 @@ react window 是如何決定渲染哪些元素呢?這邊我們可以看到其中
 [github-react-window](https://github.com/bvaughn/react-window/blob/master/src/createListComponent.js)
 
 ```js showLineNumbers
-_onScrollHorizontal = (event: ScrollEvent): void => {
-      const { clientWidth, scrollLeft, scrollWidth } = event.currentTarget;
-      this.setState(prevState => {
-        if (prevState.scrollOffset === scrollLeft) {
-          // Scroll position may have been updated by cDM/cDU,
-          // In which case we don't need to trigger another render,
-          // And we don't want to update state.isScrolling.
-          return null;
-        }
+_onScrollVertical = (event: ScrollEvent): void => {
+  const { clientHeight, scrollHeight, scrollTop } = event.currentTarget;
+  this.setState((prevState) => {
+    if (prevState.scrollOffset === scrollTop) {
+      // Scroll position may have been updated by cDM/cDU,
+      // In which case we don't need to trigger another render,
+      // And we don't want to update state.isScrolling.
+      return null;
+    }
 
-        const { direction } = this.props;
+    // Prevent Safari's elastic scrolling from causing visual shaking when scrolling past bounds.
+    const scrollOffset = Math.max(
+      0,
+      Math.min(scrollTop, scrollHeight - clientHeight)
+    );
 
-        let scrollOffset = scrollLeft;
-        if (direction === 'rtl') {
-          // TRICKY According to the spec, scrollLeft should be negative for RTL aligned elements.
-          // This is not the case for all browsers though (e.g. Chrome reports values as positive, measured relative to the left).
-          // It's also easier for this component if we convert offsets to the same format as they would be in for ltr.
-          // So the simplest solution is to determine which browser behavior we're dealing with, and convert based on it.
-          switch (getRTLOffsetType()) {
-            case 'negative':
-              scrollOffset = -scrollLeft;
-              break;
-            case 'positive-descending':
-              scrollOffset = scrollWidth - clientWidth - scrollLeft;
-              break;
-          }
-        }
-
-        // Prevent Safari's elastic scrolling from causing visual shaking when scrolling past bounds.
-        scrollOffset = Math.max(
-          0,
-          Math.min(scrollOffset, scrollWidth - clientWidth)
-        );
+    return {
+      isScrolling: true,
+      scrollDirection:
+        prevState.scrollOffset < scrollOffset ? 'forward' : 'backward',
+      scrollOffset,
+      scrollUpdateWasRequested: false,
     };
+  }, this._resetIsScrollingDebounced);
+};
 ```
 
 在監聽到 onScroll 事件時，算出目前捲動區域頂部邊緣與可見視窗頂部邊緣的距離，並將其限制在捲動區域的可見範圍內，並更新 offset 狀態。
