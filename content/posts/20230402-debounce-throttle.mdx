@@ -1,0 +1,76 @@
+---
+title: debounce / throttle 實現
+description: 使用 javascript 實現 debounce 和 throttle
+slug: debounce-throttle
+date: 2023-04-02
+type: Post
+---
+
+### debounce
+
+```js:debounce.js showLineNumbers
+// debounce
+// 比喻: 公車會等待所有人上車後，才會關上車門，開始行駛
+// 實際可能運用在搜尋某些東西時，當搜尋時，如果每個字都去call API拿取資料，會造能資源浪費、效能降低，而且通常搜尋都是會持續一段時間，我們要的只是最後的結果拿去call API，例如: 搜尋 Curry 的時候，我們不需要再輸入c的時候就去call API，而是等到 Curry全部輸入完成後，再用這個字串去拿資料。
+
+// 1.當使用者持續輸入，要將計時器不斷歸零，直到使用者不輸入並且經過 delay的的時間才會執行function
+
+function debounce(func, delay= 250) {
+  let timer = null;
+
+  return function(...args){
+    let context = this;
+    clearTimeout();
+    timer = setTimeout( () => {
+      func.apply(context, args);
+    },delay)
+  }
+}
+
+const inputElement = document.getElementById('debounce-input');
+
+function search() {
+  console.log(`searching... ${inputElement.value}`);
+}
+
+inputElement.addEventListener('input',debounce(search, 2000))
+```
+
+### throttle
+
+```js:throttle.js showLineNumbers
+// throttle
+// 比喻: 遊戲中想要放技能常常會一直按按鍵，不過技能是有冷卻時間的，當觸發一次技能時，要等待三秒之後才能再次使用，這時候就可以用throttle來做處理，當技能冷卻時間還沒結束時，就不會再次觸發技能。
+// 確保在特定時間內只能觸發特定次數的事件
+
+function throttle(func, delay = 250) {
+  let timer = null;
+  let lastTime = Date.now();
+  return function (...args) {
+    let context = this;
+    let currentTime = Date.now();
+    let remaining = delay - (currentTime - lastTime);// 冷卻時間
+    if(remaining <= 0) {
+      func.apply(context, args);
+      lastTime = Date.now();
+    }else{
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        lastTime = Date.now();
+        func.apply(context, args);
+      },remaining)
+    }
+
+  }
+}
+
+function handleClick() {
+  let count = 0
+  return function() {
+    console.log(new Date());
+    count++
+    console.log(count);
+  }
+}
+window.addEventListener('click', throttle(handleClick(), 2000));  // 2000ms才允許再次執行
+```

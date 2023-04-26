@@ -7,7 +7,6 @@ import MobileNav from '@/components/MobileNav';
 import SectionContainer from '@/components/SectionContainer';
 import ThemeSwitch from '@/components/ThemeSwitch';
 import { headerConfigs } from '@/configs/headerConfigs';
-import CustomImage from '@/components/CustomImage';
 export default function Header() {
   const { t } = useTranslation(['common']);
 
@@ -17,11 +16,6 @@ export default function Header() {
         <div className="flex items-center justify-between ml-0 sm:ml-4">
           <CustomLink href="/" aria-label={headerConfigs.title}>
             <div className="flex items-center">
-              <CustomImage
-                src="/images/dev-logo.png"
-                alt="dev-logo"
-                className="h-6 w-6 sm:h-8 sm:w-8 mr-2"
-              />
               <div className="text-2xl font-semibold sm:text-3xl">
                 {headerConfigs.title}
               </div>
