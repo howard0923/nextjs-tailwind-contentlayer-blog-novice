@@ -2,7 +2,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 [Web Demo](https://devmvpchen.com/)
 
-Inspired and modified from (https://github.com/Kamigami55/nextjs-tailwind-contentlayer-blog-starter)
 ## Getting Started
 
 First, run the development server:
